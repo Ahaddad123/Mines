@@ -19,6 +19,10 @@ public class Map {
       firstFloor();
    }
 
+   public Room[][][] getMap() {
+      return map;
+   }
+
    private void firstFloor()
    {
       firstFloorFirstRow();
@@ -179,11 +183,11 @@ public class Map {
       db.put(Direction.WEST, w);
       db.put(Direction.UP, u);
       db.put(Direction.DOWN, d);
-      HashMap<Monster, Direction> md = new HashMap<>();
+      HashMap<Direction, Monster> md = new HashMap<>();
       if(monster1 != null)
-         md.put(monster1, direction1);
+         md.put(direction1, monster1);
       if(monster2 != null)
-         md.put(monster2, direction2);
+         md.put(direction2, monster2);
       List<Item> items = new ArrayList<>();
       if(item1 != null)
          items.add(item1);
@@ -191,7 +195,8 @@ public class Map {
          items.add(item2);
       if(item3 != null)
          items.add(item3);
-      map[i][j][0] = new Room(db, items, md, "You have entered the " +
+      map[i][j][0] = new Room(db, items, md, i, j, "You have entered the" +
+              " " +
               room + ".");
    }
 
