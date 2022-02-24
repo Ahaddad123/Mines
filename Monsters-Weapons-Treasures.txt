@@ -5,7 +5,7 @@ Print for monster
               " blocked by a " + monster + ". Find a " + weapon +
               " in order to defeat this programming error and access the" +
               " passageway.");
-Print for Treasure
+Print for Items.Treasure
 	System.out.println("You have found " + treasure + ".")
 
 Monsters			Weapon to Defeat Monster
