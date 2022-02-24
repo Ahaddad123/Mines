@@ -2,6 +2,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+/**
+ * Creates the game map
+ * @author Jasmine Krahn
+ */
 public class Map {
 
    private int MAX_WIDTH = 5;
@@ -10,6 +14,11 @@ public class Map {
    private List<Item> weapons;
    private List<Item> treasures;
 
+   /**
+    * Constructor for map
+    * @param weapons list of all weapons
+    * @param treasures list of all treasures
+    */
    Map(List<Item> weapons, List<Item> treasures)
    {
       this.weapons = weapons;
@@ -19,10 +28,67 @@ public class Map {
       firstFloor();
    }
 
+   /**
+    * gets game map
+    * @return game map
+    */
    public Room[][][] getMap() {
       return map;
    }
 
+   /**
+    * creates a room for each peice of the array
+    * @param n north exit availability
+    * @param s south exit availability
+    * @param e east exit availability
+    * @param w west exit availability
+    * @param u up exit availability
+    * @param d down exit availability
+    * @param monster1 one monster blocking a path
+    * @param direction1 direction that monster1 blocks
+    * @param monster2 another monster blocking a path
+    * @param direction2 direction that monster2 blocks
+    * @param item1 an item in the room
+    * @param item2 an item in the room
+    * @param item3 an item in the room
+    * @param i row index
+    * @param j column index
+    * @param room room description
+    */
+   private void createRoom(boolean n, boolean s, boolean e, boolean w,
+                           boolean u, boolean d, Monster monster1,
+                           Direction direction1, Monster monster2,
+                           Direction direction2,
+                           Item item1, Item item2, Item item3, int i, int j,
+                           String room)
+   {
+      HashMap<Direction, Boolean> db= new HashMap<>();
+      db.put(Direction.NORTH, n);
+      db.put(Direction.SOUTH, s);
+      db.put(Direction.EAST, e);
+      db.put(Direction.WEST, w);
+      db.put(Direction.UP, u);
+      db.put(Direction.DOWN, d);
+      HashMap<Direction, Monster> md = new HashMap<>();
+      if(monster1 != null)
+         md.put(direction1, monster1);
+      if(monster2 != null)
+         md.put(direction2, monster2);
+      List<Item> items = new ArrayList<>();
+      if(item1 != null)
+         items.add(item1);
+      if(item2 != null)
+         items.add(item2);
+      if(item3 != null)
+         items.add(item3);
+      map[i][j][0] = new Room(db, items, md, i, j, "You have entered the" +
+              " " +
+              room + ".");
+   }
+
+   /**
+    * builds first floor of the game map
+    */
    private void firstFloor()
    {
       firstFloorFirstRow();
@@ -32,6 +98,9 @@ public class Map {
       firstFloorFifthRow();
    }
 
+   /**
+    * builds first row of first floor
+    */
    private void firstFloorFirstRow()
    {
       createRoom(false, true, false, false, false, false,
@@ -59,6 +128,9 @@ public class Map {
               null, 4, 0, "CPU");
    }
 
+   /**
+    * builds second row of first floor
+    */
    private void firstFloorSecondRow()
    {
       createRoom(true, false, true, false, false, false,
@@ -87,6 +159,9 @@ public class Map {
               treasures.get(4), 4, 1, "Keyboard");
    }
 
+   /**
+    * builds third row of first floor
+    */
    private void firstFloorThirdRow()
    {
       createRoom(false, true, false, false, false, false,
@@ -114,6 +189,9 @@ public class Map {
               null, 4, 2, "Floppy Disk");
    }
 
+   /**
+    * builds forth row of first floor
+    */
    private void firstFloorForthRow()
    {
       createRoom(true, true, true, false, false, false,
@@ -141,6 +219,9 @@ public class Map {
               null, 4, 3, "Network Switch");
    }
 
+   /**
+    * builds fifth row of first floor
+    */
    private void firstFloorFifthRow()
    {
       createRoom(true, false, false, false, false, false,
@@ -167,37 +248,6 @@ public class Map {
               null, null,
               null, null, null, null,
               null, 4, 4, "Operating System");
-   }
-
-   private void createRoom(boolean n, boolean s, boolean e, boolean w,
-                           boolean u, boolean d, Monster monster1,
-                      Direction direction1, Monster monster2,
-                      Direction direction2,
-                      Item item1, Item item2, Item item3, int i, int j,
-                      String room)
-   {
-      HashMap<Direction, Boolean> db= new HashMap<>();
-      db.put(Direction.NORTH, n);
-      db.put(Direction.SOUTH, s);
-      db.put(Direction.EAST, e);
-      db.put(Direction.WEST, w);
-      db.put(Direction.UP, u);
-      db.put(Direction.DOWN, d);
-      HashMap<Direction, Monster> md = new HashMap<>();
-      if(monster1 != null)
-         md.put(direction1, monster1);
-      if(monster2 != null)
-         md.put(direction2, monster2);
-      List<Item> items = new ArrayList<>();
-      if(item1 != null)
-         items.add(item1);
-      if(item2 != null)
-         items.add(item2);
-      if(item3 != null)
-         items.add(item3);
-      map[i][j][0] = new Room(db, items, md, i, j, "You have entered the" +
-              " " +
-              room + ".");
    }
 
 }
