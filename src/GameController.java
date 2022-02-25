@@ -1,3 +1,6 @@
+import Items.Item;
+import Items.ItemController;
+
 /**
  * @author Makenna Halvensleben
  * GameController holds the logic to run the game by handling user commands.
