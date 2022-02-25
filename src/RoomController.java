@@ -70,4 +70,12 @@ public class RoomController {
    public Room getCurrentRoom() {
       return currentRoom;
    }
+
+   /**
+    * gets map
+    * @return map of rooms
+    */
+   public Map getMap() {
+      return map;
+   }
 }
