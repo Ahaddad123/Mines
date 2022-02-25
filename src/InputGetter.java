@@ -16,10 +16,10 @@ public class InputGetter implements Inputtable {
         command = read.nextLine();
         switch(command){
             case 'n':
-                if(player.getLocation().getDirection().get(Direction.NORTH) == false){
-                    if(player.getMonsters().contains(Direction.NORTH) == true){
+                if(player.getLocation().getDirections().get(Commands.NORTH) == false){
+                    if(player.getMonsters().contains(Commands.NORTH) == true){
                         for(int i = 0; i < player.getWeapons().size(); i++){
-                            if(player.getWeapons().get(i).getMonster() == player.getMonsters().get(Direction.NORTH)){
+                            if(player.getWeapons().get(i).getMonster() == player.getMonsters().get(Commands.NORTH)){
                                 valid = true;
                                 command = "NORTH";
                             }
@@ -35,8 +35,8 @@ public class InputGetter implements Inputtable {
                     }
                 }
             case 's':
-                if(player.getLocation().getDirection().get(Direction.SOUTH) == false){
-                    if(player.getMonsters().contains(Direction.SOUTH) == true){
+                if(player.getLocation().getDirection().get(Commands.SOUTH) == false){
+                    if(player.getMonsters().contains(Commands.SOUTH) == true){
                         for(int i = 0; i < player.getWeapons().size(); i++){
                             if(player.getWeapons().get(i).getMonster() == player.getMonsters().get(Direction.SOUTH)){
                                 valid = true;
