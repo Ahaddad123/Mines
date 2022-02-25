@@ -10,7 +10,7 @@ public class Map {
 
    private int MAX_WIDTH = 5;
    private int MAX_HEIGHT = 3;
-   private Room[][][] map;
+   private Room[][] map;
    private List<Item> weapons;
    private List<Item> treasures;
 
@@ -24,7 +24,7 @@ public class Map {
       this.weapons = weapons;
       this.treasures = treasures;
       // row, column, floor
-      map = new Room[MAX_WIDTH][MAX_WIDTH][MAX_HEIGHT];
+      map = new Room[MAX_WIDTH][MAX_WIDTH];
       firstFloor();
    }
 
@@ -32,7 +32,7 @@ public class Map {
     * gets game map
     * @return game map
     */
-   public Room[][][] getMap() {
+   public Room[][] getMap() {
       return map;
    }
 
@@ -81,7 +81,7 @@ public class Map {
          items.add(item2);
       if(item3 != null)
          items.add(item3);
-      map[i][j][0] = new Room(db, items, md, i, j, "You have entered the" +
+      map[i][j] = new Room(db, items, md, i, j, "You have entered the" +
               " " +
               room + ".");
    }
