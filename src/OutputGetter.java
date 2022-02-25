@@ -27,7 +27,7 @@ public class OutputGetter implements Outputtable{
     public void outputRejectionMessage(){}
 
     public void outputRoomDescription(Room room){
-
+        System.out.println(room.getDescription());
     }
 
     public void outputPoints(Player player, int movementNumber){}
