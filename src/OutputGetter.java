@@ -22,4 +22,11 @@ public class OutputGetter implements Outputtable{
 
     }
 
+    public void outputInventory(){}
+
+    public void outputRejectionMessage(){}
+
+    public void outputRoomDescription(){}
+
+
 }
