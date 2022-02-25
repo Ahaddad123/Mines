@@ -18,15 +18,19 @@ public class OutputGetter implements Outputtable{
         System.out.println("distance between adjacent rooms.\n");
     }
 
-    public void outputWinMessage(){
+    public void outputQuitMessage(Player player, int movementNumber){
 
     }
 
-    public void outputInventory(){}
+    public void outputInventory(Player player){}
 
     public void outputRejectionMessage(){}
 
-    public void outputRoomDescription(){}
+    public void outputRoomDescription(Room room){
+
+    }
+
+    public void outputPoints(Player player, int movementNumber){}
 
 
 }
