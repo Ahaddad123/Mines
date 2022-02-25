@@ -149,7 +149,7 @@ public class GameController {
     public void removeWeapon(Commands command) {
         for (Item item : player.getWeapons()) {
             Weapon weapon = (Weapon)item;
-            if (weapon.getMonster().equals(player.getLocation().getMonsters().get(command))) {
+            if (weapon.getMonster().getName().equals(player.getLocation().getMonsters().get(command).getName())) {
                 player.getInventory().remove(item);
             }
         }

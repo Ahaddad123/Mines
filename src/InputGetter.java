@@ -21,15 +21,14 @@ public class InputGetter implements Inputtable {
                     if(player.getLocation().getMonsters().containsKey(Commands.NORTH)){
                         for(int i = 0; i < player.getWeapons().size(); i++){
                             Weapon weapon = (Weapon)player.getWeapons().get(i);
-                            if(weapon.getMonster() == player.getLocation().getMonsters().get(Commands.NORTH)){
+                            if(weapon.getMonster().getName().equals(player.getLocation().getMonsters().get(Commands.NORTH).getName())){
                                 valid = true;
                                 command = "NORTH";
                             }
-                            else{
-                                System.out.println("Passageway is blocked.");
-                                valid = false;
-                                command = "INVALID";
-                            }
+                        }
+                        if (!valid) {
+                            System.out.println("Passageway is blocked.");
+                            command = "INVALID";
                         }
                     }
                     else{
@@ -47,15 +46,14 @@ public class InputGetter implements Inputtable {
                     if(player.getLocation().getMonsters().containsKey(Commands.SOUTH)){
                         for(int i = 0; i < player.getWeapons().size(); i++){
                             Weapon weapon = (Weapon)player.getWeapons().get(i);
-                            if(weapon.getMonster() == player.getLocation().getMonsters().get(Commands.SOUTH)){
+                            if(weapon.getMonster().getName().equals(player.getLocation().getMonsters().get(Commands.SOUTH).getName())){
                                 valid = true;
                                 command = "SOUTH";
                             }
-                            else{
-                                System.out.println("Passageway is blocked.");
-                                command = "INVALID";
-                                valid = false;
-                            }
+                        }
+                        if (!valid) {
+                            System.out.println("Passageway is blocked.");
+                            command = "INVALID";
                         }
                     }
                     else{
@@ -73,15 +71,14 @@ public class InputGetter implements Inputtable {
                     if(player.getLocation().getMonsters().containsKey(Commands.EAST)){
                         for(int i = 0; i < player.getWeapons().size(); i++){
                             Weapon weapon = (Weapon)player.getWeapons().get(i);
-                            if(weapon.getMonster() == player.getLocation().getMonsters().get(Commands.EAST)){
+                            if(weapon.getMonster().getName().equals(player.getLocation().getMonsters().get(Commands.EAST).getName())){
                                 valid = true;
                                 command = "EAST";
                             }
-                            else{
-                                System.out.println("Passageway is blocked.");
-                                valid = false;
-                                command = "INVALID";
-                            }
+                        }
+                        if (!valid) {
+                            System.out.println("Passageway is blocked.");
+                            command = "INVALID";
                         }
                     }
                     else{
@@ -99,15 +96,14 @@ public class InputGetter implements Inputtable {
                     if(player.getLocation().getMonsters().containsKey(Commands.WEST)){
                         for(int i = 0; i < player.getWeapons().size(); i++){
                             Weapon weapon = (Weapon)player.getWeapons().get(i);
-                            if(weapon.getMonster() == player.getLocation().getMonsters().get(Commands.WEST)){
+                            if(weapon.getMonster().getName().equals(player.getLocation().getMonsters().get(Commands.WEST).getName())){
                                 valid = true;
                                 command = "WEST";
                             }
-                            else {
-                                System.out.println("Passageway is blocked.");
-                                command = "INVALID";
-                                valid = false;
-                            }
+                        }
+                        if (!valid) {
+                            System.out.println("Passageway is blocked.");
+                            command = "INVALID";
                         }
                     }
                     else{
@@ -144,7 +140,7 @@ public class InputGetter implements Inputtable {
                 break;
             case "l":
                 valid = true;
-                command = "LEAVE";
+                command = "LEAVE_TREASURES";
                 break;
             case "o":
                 valid = true;
