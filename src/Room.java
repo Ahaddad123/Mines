@@ -1,14 +1,16 @@
 import java.util.HashMap;
 import java.util.List;
+import Items.Item;
+import Items.Monster;
 
 /**
  * Creates a room with monsters, weapons, and treasures
  * @author Jasmine Krahn
  */
 public class Room {
-   private HashMap<Direction, Boolean> directions;
+   private HashMap<Commands, Boolean> directions;
    private List<Item> items;
-   private HashMap<Direction, Monster> monsters;
+   private HashMap<Commands, Monster> monsters;
    private String description;
    private int row;
    private int column;
@@ -23,8 +25,8 @@ public class Room {
     * @param column column of map array
     * @param description description of the room
     */
-   Room(HashMap<Direction, Boolean> directions, List<Item> items,
-        HashMap<Direction, Monster> monsters, int row,
+   Room(HashMap<Commands, Boolean> directions, List<Item> items,
+        HashMap<Commands, Monster> monsters, int row,
         int column, String description)
    {
       this.items = items;
@@ -40,7 +42,7 @@ public class Room {
     * Getter for open exits
     * @return open exits
     */
-   public HashMap<Direction, Boolean> getDirections() {
+   public HashMap<Commands, Boolean> getDirections() {
       return directions;
    }
 
@@ -56,7 +58,7 @@ public class Room {
     * getter for monsters blocking passageways
     * @return monsters in the room
     */
-   public HashMap<Direction, Monster> getMonsters() {
+   public HashMap<Commands, Monster> getMonsters() {
       return monsters;
    }
 

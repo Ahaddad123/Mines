@@ -1,4 +1,3 @@
-import java.util.List;
 import java.util.Scanner;
 
 
@@ -8,7 +7,7 @@ import java.util.Scanner;
 public class InputGetter implements Inputtable {
     Scanner read = new Scanner(System.in);
 
-    public commands inputCommand(Player player){
+    public Commands inputCommand(Player player){
         String command;
         System.out.println("Command? ");
         boolean valid = false;
@@ -121,8 +120,8 @@ public class InputGetter implements Inputtable {
         }
 
         if(valid)
-            return commands.valueOf(command);
+            return Commands.valueOf(command);
         else
-            return commands.INVALID;
+            return Commands.INVALID;
     }
 }

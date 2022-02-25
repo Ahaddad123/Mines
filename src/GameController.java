@@ -3,7 +3,7 @@ import Items.ItemController;
 
 /**
  * @author Makenna Halvensleben
- * GameController holds the logic to run the game by handling user commands.
+ * GameController holds the logic to run the game by handling user Commandsss.
  */
 public class GameController {
 
@@ -38,8 +38,8 @@ public class GameController {
         // game loop
         do {
             outputtable.outputRoom(player.getLocation());
-            Command command = inputtable.inputCommand(player);
-            handleCommand(command);
+            Commands Commands = inputtable.inputCommands(player);
+            handleCommands(Commands);
         } while(!hasWon() && !quit);
         if (hasWon()) {
             outputtable.outputWinMessage();
@@ -50,66 +50,66 @@ public class GameController {
 
     /**
      * Checks if there are any monsters that need to be killed when the player moves.
-     * @param command direction to go
+     * @param Commands Commandss to go
      */
-    public void killMonster(Command command) {
+    public void killMonster(Commands Commands) {
         Room location = player.getLocation();
         Room adjacentRoom;
-        if (command == Command.NORTH) {
-            if (location.getDirections().get(Direction.NORTH) == false) {
-                location.getMonsters().remove(Direction.NORTH);
-                location.getDirections().put(Direction.NORTH, true);
+        if (Commands == Commands.NORTH) {
+            if (location.getCommandsss().get(Commandss.NORTH) == false) {
+                location.getMonsters().remove(Commandss.NORTH);
+                location.getCommandsss().put(Commandss.NORTH, true);
                 adjacentRoom = map.getRooms()[player.getXIndex()][player.getYIndex() - 1];
-                adjacentRoom.getMonsters().remove(Direction.SOUTH);
-                adjacentRoom.getDirections().put(Direction.SOUTH, true);
+                adjacentRoom.getMonsters().remove(Commandss.SOUTH);
+                adjacentRoom.getCommandsss().put(Commandss.SOUTH, true);
             }
-        } else if (command == Command.SOUTH) {
-            if (location.getDirections().get(Direction.SOUTH) == false) {
-                location.getMonsters().remove(Direction.SOUTH);
-                location.getDirections().put(Direction.SOUTH, true);
+        } else if (Commands == Commands.SOUTH) {
+            if (location.getCommandsss().get(Commandss.SOUTH) == false) {
+                location.getMonsters().remove(Commandss.SOUTH);
+                location.getCommandsss().put(Commandss.SOUTH, true);
                 adjacentRoom = map.getRooms()[player.getXIndex()][player.getYIndex() + 1];
-                adjacentRoom.getMonsters().remove(Direction.NORTH);
-                adjacentRoom.getDirections().put(Direction.NORTH, true);
+                adjacentRoom.getMonsters().remove(Commandss.NORTH);
+                adjacentRoom.getCommandsss().put(Commandss.NORTH, true);
             }
-        } else if (command == Command.EAST) {
-            if (location.getDirections().get(Direction.EAST) == false) {
-                location.getMonsters().remove(Direction.EAST);
-                location.getDirections().put(Direction.EAST, true);
+        } else if (Commands == Commands.EAST) {
+            if (location.getCommandsss().get(Commandss.EAST) == false) {
+                location.getMonsters().remove(Commandss.EAST);
+                location.getCommandsss().put(Commandss.EAST, true);
                 adjacentRoom = map.getRooms()[player.getXIndex() + 1][player.getYIndex()];
-                adjacentRoom.getMonsters().remove(Direction.WEST);
-                adjacentRoom.getDirections().put(Direction.WEST, true);
+                adjacentRoom.getMonsters().remove(Commandss.WEST);
+                adjacentRoom.getCommandsss().put(Commandss.WEST, true);
             }
-        } else if (command == Command.WEST) {
-            if (location.getDirections().get(Direction.WEST) == false) {
-                location.getMonsters().remove(Direction.WEST);
-                location.getDirections().put(Direction.WEST, true);
+        } else if (Commands == Commands.WEST) {
+            if (location.getCommandsss().get(Commandss.WEST) == false) {
+                location.getMonsters().remove(Commandss.WEST);
+                location.getCommandsss().put(Commandss.WEST, true);
                 adjacentRoom = map.getRooms()[player.getXIndex() - 1][player.getYIndex()];
-                adjacentRoom.getMonsters().remove(Direction.EAST);
-                adjacentRoom.getDirections().put(Direction.EAST, true);
+                adjacentRoom.getMonsters().remove(Commandss.EAST);
+                adjacentRoom.getCommandsss().put(Commandss.EAST, true);
             }
         }
     }
 
     /**
-     * Handles the input from the user and calls the needed methods for each command.
-     * @param command user's input
+     * Handles the input from the user and calls the needed methods for each Commands.
+     * @param Commands user's input
      */
-    public void handleCommand(Command command) {
+    public void handleCommands(Commandss Commands) {
         Outputtable outputtable = IOManager.getInstance().getOutputtable();
-        if (command == Command.NORTH || command == Command.SOUTH || command == Command.EAST ||
-                command == Command.WEST || command == Command.UP || command == Command.DOWN) {
-            killMonster(command);
-            player.move(command, map);
-        } else if (command == Command.CARRY) {
+        if (Commands == Commandss.NORTH || Commands == Commandss.SOUTH || Commands == Commandss.EAST ||
+                Commands == Commandss.WEST || Commands == Commandss.UP || Commands == Commandss.DOWN) {
+            killMonster(Commands);
+            player.move(Commands, map);
+        } else if (Commands == Commands.CARRY) {
             for (Item item : player.getLocation().getItems()) {
                 player.getInventory().add(item);
             }
             player.getLocation().getItems().clear();
-        } else if (command == Command.INVENTORY) {
+        } else if (Commands == Commands.INVENTORY) {
             outputtable.outputInventory(player);
-        } else if (command == Command.LEAVE_TREASURES) {
+        } else if (Commands == Commands.LEAVE_TREASURES) {
             leaveTreasures();
-        } else if (command == Command.OUT) {
+        } else if (Commands == Commands.OUT) {
             if (player.getTreasures().size() > 0) {
                 //TODO: implement out functionality
                 boolean stoleTreasure = false;
@@ -123,11 +123,11 @@ public class GameController {
                 }
                 outputtable.outputWayOut(findWayOut());
             }
-        } else if (command == Command.POINTS) {
+        } else if (Commands == Commands.POINTS) {
             outputtable.outputPoints(player, moveCount);
-        } else if (command == Command.HELP) {
+        } else if (Commands == Commands.HELP) {
             outputtable.outputHelp();
-        } else if (command == Command.QUIT) {
+        } else if (Commands == Commands.QUIT) {
             quit = true;
         } else {
             outputtable.outputInvalid();
