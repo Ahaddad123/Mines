@@ -1,9 +1,9 @@
 package Items;
 
-public class Weapon {
+public class Weapon extends Item{
     // variables
     String name;
-    String monster;
+    Monster monster;
 
     /**
      * Returns the name of the weapon.
@@ -14,10 +14,10 @@ public class Weapon {
     }
 
     /**
-     * Returns the name of the monster associated with the weapon.
+     * Returns the monster object associated with the weapon.
      * @return
      */
-    public String getMonster() {
+    public Monster getMonster() {
         return monster;
     }
 
@@ -25,7 +25,7 @@ public class Weapon {
      * Constructor for weapon, adds the name and monster associated with it.
      * @param name
      */
-    public Weapon(String name, String monster) {
+    public Weapon(String name, Monster monster) {
         this.name = name;
     }
 }

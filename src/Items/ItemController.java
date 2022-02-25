@@ -4,14 +4,14 @@ import java.util.ArrayList;
 
 public class ItemController {
 
-    public void itemController() {
+    public ItemController() {
 
     }
 
     /**
      * Adds all the various items that are in the game into an array list.
      */
-    public void createItems() {
+    public void createTreasures() {
         // creates the treasures
         ArrayList<String> treasures = new ArrayList<String>();
         treasures.add("a Magical Unicorn");
@@ -38,7 +38,12 @@ public class ItemController {
         treasures.add("No Final Exam");
         treasures.add("a Passing Grade");
         treasures.add("a Completed Project");
+    }
 
+    /**
+     * Adds all the various monsters that are in the game into an array list.
+     */
+    public void createWeapons() {
         // creates the weapons
         ArrayList<String> weapons = new ArrayList<String>();
         weapons.add("Copy & Paste");
@@ -71,7 +76,6 @@ public class ItemController {
      * Adds all the various monsters that are in the game into an array list.
      */
     public void createMonster() {
-
         // creates the monsters
         ArrayList<String> monsters = new ArrayList<String>();
         monsters.add("Code in Notepad");

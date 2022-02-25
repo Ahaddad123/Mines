@@ -1,6 +1,6 @@
 package Items;
 
-public class Treasure {
+public class Treasure extends Item {
     // variables
     String name;
 
