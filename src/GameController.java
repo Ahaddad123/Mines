@@ -41,7 +41,7 @@ public class GameController {
             Commands command = inputtable.inputCommand(player);
             handleCommand(command);
         } while(!quit);
-        outputtable.outputQuitMessage(player, player.getMoveCount());
+        //outputtable.outputQuitMessage(player, player.getMoveCount());
     }
 
     /**
