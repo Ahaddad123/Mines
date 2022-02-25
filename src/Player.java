@@ -1,3 +1,7 @@
+import Items.Item;
+import Items.Treasure;
+import Items.Weapon;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -157,22 +161,22 @@ public class Player {
      * @param command user's input
      * @param map map of the game
      */
-    public void move(Command command, Map map) {
-        if (command == Command.NORTH) {
+    public void move(Commands command, Map map) {
+        if (command == Commands.NORTH) {
             this.yIndex--;
-        } else if (command == Command.SOUTH) {
+        } else if (command == Commands.SOUTH) {
             this.yIndex++;
-        } else if (command == Command.EAST) {
+        } else if (command == Commands.EAST) {
             this.xIndex++;
-        } else if (command == Command.WEST) {
+        } else if (command == Commands.WEST) {
             this.xIndex--;
-        } else if (command == Command.UP) {
+        } else if (command == Commands.UP) {
             this.zIndex--;
-        } else if (command == Command.DOWN) {
+        } else if (command == Commands.DOWN) {
             this.zIndex++;
         }
         //TODO: change to 3D array
-        this.location = map.getRooms()[this.xIndex][this.yIndex];
+        this.location = map.getMap()[this.xIndex][this.yIndex];
         this.moveCount++;
     }
 }
