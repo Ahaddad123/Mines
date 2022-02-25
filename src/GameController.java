@@ -3,7 +3,7 @@ import Items.ItemController;
 
 /**
  * @author Makenna Halvensleben
- * GameController holds the logic to run the game by handling user Commandsss.
+ * GameController holds the logic to run the game by handling user Commands.
  */
 public class GameController {
 
@@ -50,42 +50,42 @@ public class GameController {
 
     /**
      * Checks if there are any monsters that need to be killed when the player moves.
-     * @param Commands Commandss to go
+     * @param Commands Commands to go
      */
     public void killMonster(Commands Commands) {
         Room location = player.getLocation();
         Room adjacentRoom;
         if (Commands == Commands.NORTH) {
-            if (location.getCommandsss().get(Commandss.NORTH) == false) {
-                location.getMonsters().remove(Commandss.NORTH);
-                location.getCommandsss().put(Commandss.NORTH, true);
+            if (location.getCommands().get(Commands.NORTH) == false) {
+                location.getMonsters().remove(Commands.NORTH);
+                location.getCommands().put(Commands.NORTH, true);
                 adjacentRoom = map.getRooms()[player.getXIndex()][player.getYIndex() - 1];
-                adjacentRoom.getMonsters().remove(Commandss.SOUTH);
-                adjacentRoom.getCommandsss().put(Commandss.SOUTH, true);
+                adjacentRoom.getMonsters().remove(Commands.SOUTH);
+                adjacentRoom.getCommands().put(Commands.SOUTH, true);
             }
         } else if (Commands == Commands.SOUTH) {
-            if (location.getCommandsss().get(Commandss.SOUTH) == false) {
-                location.getMonsters().remove(Commandss.SOUTH);
-                location.getCommandsss().put(Commandss.SOUTH, true);
+            if (location.getCommands().get(Commands.SOUTH) == false) {
+                location.getMonsters().remove(Commands.SOUTH);
+                location.getCommands().put(Commands.SOUTH, true);
                 adjacentRoom = map.getRooms()[player.getXIndex()][player.getYIndex() + 1];
-                adjacentRoom.getMonsters().remove(Commandss.NORTH);
-                adjacentRoom.getCommandsss().put(Commandss.NORTH, true);
+                adjacentRoom.getMonsters().remove(Commands.NORTH);
+                adjacentRoom.getCommands().put(Commands.NORTH, true);
             }
         } else if (Commands == Commands.EAST) {
-            if (location.getCommandsss().get(Commandss.EAST) == false) {
-                location.getMonsters().remove(Commandss.EAST);
-                location.getCommandsss().put(Commandss.EAST, true);
+            if (location.getCommands().get(Commands.EAST) == false) {
+                location.getMonsters().remove(Commands.EAST);
+                location.getCommands().put(Commands.EAST, true);
                 adjacentRoom = map.getRooms()[player.getXIndex() + 1][player.getYIndex()];
-                adjacentRoom.getMonsters().remove(Commandss.WEST);
-                adjacentRoom.getCommandsss().put(Commandss.WEST, true);
+                adjacentRoom.getMonsters().remove(Commands.WEST);
+                adjacentRoom.getCommands().put(Commands.WEST, true);
             }
         } else if (Commands == Commands.WEST) {
-            if (location.getCommandsss().get(Commandss.WEST) == false) {
-                location.getMonsters().remove(Commandss.WEST);
-                location.getCommandsss().put(Commandss.WEST, true);
+            if (location.getCommands().get(Commands.WEST) == false) {
+                location.getMonsters().remove(Commands.WEST);
+                location.getCommands().put(Commands.WEST, true);
                 adjacentRoom = map.getRooms()[player.getXIndex() - 1][player.getYIndex()];
-                adjacentRoom.getMonsters().remove(Commandss.EAST);
-                adjacentRoom.getCommandsss().put(Commandss.EAST, true);
+                adjacentRoom.getMonsters().remove(Commands.EAST);
+                adjacentRoom.getCommands().put(Commands.EAST, true);
             }
         }
     }
@@ -94,10 +94,10 @@ public class GameController {
      * Handles the input from the user and calls the needed methods for each Commands.
      * @param Commands user's input
      */
-    public void handleCommands(Commandss Commands) {
+    public void handleCommands(Commands Commands) {
         Outputtable outputtable = IOManager.getInstance().getOutputtable();
-        if (Commands == Commandss.NORTH || Commands == Commandss.SOUTH || Commands == Commandss.EAST ||
-                Commands == Commandss.WEST || Commands == Commandss.UP || Commands == Commandss.DOWN) {
+        if (Commands == Commands.NORTH || Commands == Commands.SOUTH || Commands == Commands.EAST ||
+                Commands == Commands.WEST || Commands == Commands.UP || Commands == Commands.DOWN) {
             killMonster(Commands);
             player.move(Commands, map);
         } else if (Commands == Commands.CARRY) {
