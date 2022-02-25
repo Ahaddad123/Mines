@@ -1,46 +1,11 @@
 package Items;
 
 public class Monster {
-
     // variables
-    boolean defeated = false;
-    String passage = "";
-    String name = "";
+    String name;
 
     /**
-     *
-     * @return
-     */
-    public boolean getDefeated() {
-        return true;
-    }
-
-    /**
-     *
-     * @param defeated
-     */
-    public void setDefeated(boolean defeated) {
-
-    }
-
-    /**
-     *
-     * @return
-     */
-    public String getPassage() {
-        return "PASSAGE";
-    }
-
-    /**
-     *
-     * @param passage
-     */
-    public void setPassage(String passage) {
-
-    }
-
-    /**
-     *
+     * Returns the name of the monster.
      * @return
      */
     public String getName() {
@@ -48,10 +13,10 @@ public class Monster {
     }
 
     /**
-     *
+     * Constructor for monster, adds the name
      * @param name
      */
-    public void setName(String name) {
-
+    public Monster(String name) {
+        this.name = name;
     }
 }

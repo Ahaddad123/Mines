@@ -4,15 +4,8 @@ import java.util.ArrayList;
 
 public class ItemController {
 
-    //variables
-    Map weaponsAndMonsters = new map;
-
     public void itemController() {
 
-    }
-
-    public boolean killMonsters(Room location, Player player) {
-        return true;
     }
 
     /**
@@ -78,39 +71,32 @@ public class ItemController {
      * Adds all the various monsters that are in the game into an array list.
      */
     public void createMonster() {
+
         // creates the monsters
         ArrayList<String> monsters = new ArrayList<String>();
         monsters.add("Code in Notepad");
-        monstaers.add("Missing Semicolon");
-        2. Spelling Mistake		Missing Letter
-        3. Wrong Operator		Correct Operator
-        4. Magic Number			Constant Declaration
-        5. Wrong Variable Type		Correct Variable Type
-        6. Missing Method		New Method
-        7. Failed Build			Compiler
-        8. Bad Naming Convention	Lower Case First Letter
-        9. Missing Bracket		Bracket
-        10. Out of Bounds Index		Larger Bound
-        11. Infinite Loop		Terminating condition
-        12. Duplicate Variable		Different Name
-        13. Undefined Variable		Variable Declaration
-        14. Lack of Energy		Energy Drink
-        15. Sleeping Coder		Alarm Clock
-        16. Lack of Parameters		Extra Parameter
-        17. Broken Computer		Trip to the Library
-        18. Old Version of IDE		Update Download
-        19. Lost Code			File in the Trash Can
-        20. Failed Push			Pull and Merge Request
-        21. Brain Block			Team Meeting
-        22. Unknown Error		Google Link
-        23. 404 Error			Dinosaur Game
-    }
-
-    public Map getWeaponsAndMonsters() {
-        return weaponsAndMonsters;
-    }
-
-    public void setWeaponsAndMonsters(Map weaponsAndMonsters) {
-        this.weaponsAndMonsters = weaponsAndMonsters;
+        monsters.add("Missing Semicolon");
+        monsters.add("Spelling Mistake");
+        monsters.add("Wrong Operator");
+        monsters.add("Magic Number");
+        monsters.add("Variable Type");
+        monsters.add("Missing Method");
+        monsters.add("Failed Build");
+        monsters.add("Bad Naming Convention");
+        monsters.add("Missing Bracket");
+        monsters.add("Out of Bounds Index");
+        monsters.add("Infinite Loop");
+        monsters.add("Duplicate Variable");
+        monsters.add("Undefined Variable");
+        monsters.add("Lack of Energy");
+        monsters.add("Sleeping Coder");
+        monsters.add("Lack of Parameters");
+        monsters.add("Broken Computer");
+        monsters.add("Old Version of IDE");
+        monsters.add("Lost Code");
+        monsters.add("Failed Push");
+        monsters.add("Brain Block");
+        monsters.add("Unknown Error");
+        monsters.add("404 Error");
     }
 }

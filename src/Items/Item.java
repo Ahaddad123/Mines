@@ -3,7 +3,7 @@ package Items;
 public class Item {
 
     //variables
-    String name = "";
+    String name;
 
     /**
      *
