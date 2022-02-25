@@ -19,14 +19,16 @@ public class RoomController {
 
    // map information
    private Map map;
-   private Room[][][] rooms;
 
    /**
     * Constructor - make sure its the same reference map
     */
-   RoomController()
+   RoomController(List<Item> weapons, List<Item> treasures)
    {
-      rooms = map.getMap();
+      map = new Map(weapons, treasures);
+      startRow = 0;
+      startColumn = 0;
+      startFloor = 0;
    }
 
    /**
