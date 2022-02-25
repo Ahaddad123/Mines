@@ -27,5 +27,6 @@ public class Weapon extends Item{
      */
     public Weapon(String name, Monster monster) {
         this.name = name;
+        this.monster = monster;
     }
 }
