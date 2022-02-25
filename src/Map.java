@@ -123,7 +123,7 @@ public class Map {
 
       createRoom(false, true, true, true, false, false,
               null, null, null, null, weapons.get(2),
-              null, null, 3, 1, "RAM");
+              null, null, 3, 0, "RAM");
 
       createRoom(false, false, false, true, false, false,
               new Monster("Spelling Mistake"), Commands.SOUTH,
