@@ -1,4 +1,7 @@
 
+import Items.Item;
+import javafx.scene.control.skin.TextInputControlSkin;
+
 import java.util.List;
 
 /**
@@ -22,12 +25,31 @@ public class OutputGetter implements Outputtable{
 
     }
 
-    public void outputInventory(Player player){}
+    public void outputInventory(Player player){
+        System.out.println("This is your list of items: ");
+        for(Item item : player.getInventory()){
+            System.out.println(item.getName());
+        }
+        System.out.println("\n");
+    }
 
-    public void outputRejectionMessage(){}
+    public void outputRejectionMessage(){
 
-    public void outputRoomDescription(Room room){
+    }
+
+    public void outputRoomDescription(Room room)
+    {
         System.out.println(room.getDescription());
+        for(Item item: room.getItems()){
+            System.out.println("A " + item.getName() + " is in this room. ");
+        }
+        room.getMonsters().forEach((k, v) -> System.out.println(v.getName() + " is blocking " + k + " passage."));
+
+        for(Commands direction : room.getDirections().keySet()){
+            if(room.getDirections().get(direction)){
+                System.out.println("There is a passage " + direction);
+            }
+        }
     }
 
     public void outputPoints(Player player, int movementNumber){}

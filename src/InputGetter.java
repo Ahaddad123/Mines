@@ -26,12 +26,14 @@ public class InputGetter implements Inputtable {
                                 command = "NORTH";
                             }
                             else{
+                                System.out.println("Passageway is blocked.");
                                 valid = false;
                                 command = "INVALID";
                             }
                         }
                     }
                     else{
+                        System.out.println("You can't go that way.");
                         command = "INVALID";
                         valid = false;
                     }
@@ -50,12 +52,14 @@ public class InputGetter implements Inputtable {
                                 command = "SOUTH";
                             }
                             else{
+                                System.out.println("Passageway is blocked.");
                                 command = "INVALID";
                                 valid = false;
                             }
                         }
                     }
                     else{
+                        System.out.println("You can't go that way.");
                         command = "INVALID";
                         valid = false;
                     }
@@ -74,12 +78,14 @@ public class InputGetter implements Inputtable {
                                 command = "EAST";
                             }
                             else{
+                                System.out.println("Passageway is blocked.");
                                 valid = false;
                                 command = "INVALID";
                             }
                         }
                     }
                     else{
+                        System.out.println("You can't go that way.");
                         command = "INVALID";
                         valid = false;
                     }
@@ -98,12 +104,14 @@ public class InputGetter implements Inputtable {
                                 command = "WEST";
                             }
                             else {
+                                System.out.println("Passageway is blocked.");
                                 command = "INVALID";
                                 valid = false;
                             }
                         }
                     }
                     else{
+                        System.out.println("You can't go that way.");
                         command = "INVALID";
                         valid = false;
                     }
