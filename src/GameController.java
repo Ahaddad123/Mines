@@ -28,8 +28,8 @@ public class GameController {
 
         roomController = new RoomController(itemController.createWeapons(),itemController.createTreasures());
         map = roomController.getMap();
-        player = new Player(roomController.getEntrance(),
-                roomController.getXIndex(), roomController.getYIndex(), roomController.getZIndex());
+        player = new Player(roomController.getMap().getMap()[roomController.getStartRow()][roomController.getStartColumn()],
+                roomController.getStartRow(), roomController.getStartColumn(), roomController.getStartFloor());
         quit = false;
 
         // game loop
@@ -157,7 +157,7 @@ public class GameController {
 
     public String findWayOut() {
         String wayOut = "";
-
+        return wayOut;
     }
 
 }
