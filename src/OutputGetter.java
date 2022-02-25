@@ -26,7 +26,9 @@ public class OutputGetter implements Outputtable{
 
     public void outputRejectionMessage(){}
 
-    public void outputRoomDescription(){}
+    public void outputRoomDescription(Room room){
+
+    }
 
 
 }
