@@ -22,7 +22,7 @@ public class OutputGetter implements Outputtable{
 
     }
 
-    public void outputInventory(){}
+    public void outputInventory(Player player){}
 
     public void outputRejectionMessage(){}
 
