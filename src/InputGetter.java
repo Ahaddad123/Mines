@@ -4,11 +4,17 @@ import java.util.Scanner;
 
 
 /**
- * Input Getter implements the inputtable interface to output all the results and such of the battle pets game
+ * Input Getter implements the inputtable interface to take inputs for the game
  * */
 public class InputGetter implements Inputtable {
     Scanner read = new Scanner(System.in);
-
+    /**
+     * inputCommand reads in the command and checks if the direction is valid, and if the command is valid.
+     * If the direction is invalid the user is prompted to enter another direction, and if the command is
+     * invalid the user is prompted to enter another command
+     *
+     * @param player this gives information on the user and their location on the map
+     * */
     public Commands inputCommand(Player player){
         String command;
         System.out.println("Command? ");
