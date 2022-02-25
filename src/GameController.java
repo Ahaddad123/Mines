@@ -1,6 +1,7 @@
 import Items.Item;
 import Items.ItemController;
 import Items.Treasure;
+import Items.Weapon;
 
 /**
  * @author Makenna Halvensleben
@@ -28,7 +29,6 @@ public class GameController {
         // initialize map and player
         Outputtable outputtable = IOManager.getInstance().getOutputtable();
         Inputtable inputtable = IOManager.getInstance().getInputtable();
-
         RoomController roomController = new RoomController(itemController.createWeapons(), itemController.createTreasures());
         map = roomController.getMap();
         player = new Player(roomController.getMap().getMap()[roomController.getStartRow()][roomController.getStartColumn()],
@@ -53,6 +53,7 @@ public class GameController {
         Room adjacentRoom;
         if (command == Commands.NORTH) {
             if (!location.getDirections().get(Commands.NORTH)) {
+                removeWeapon(Commands.NORTH);
                 location.getMonsters().remove(Commands.NORTH);
                 location.getDirections().put(Commands.NORTH, true);
                 adjacentRoom = map.getMap()[player.getXIndex()][player.getYIndex() - 1];
@@ -61,6 +62,7 @@ public class GameController {
             }
         } else if (command == Commands.SOUTH) {
             if (!location.getDirections().get(Commands.SOUTH)) {
+                removeWeapon(Commands.SOUTH);
                 location.getMonsters().remove(Commands.SOUTH);
                 location.getDirections().put(Commands.SOUTH, true);
                 adjacentRoom = map.getMap()[player.getXIndex()][player.getYIndex() + 1];
@@ -69,6 +71,7 @@ public class GameController {
             }
         } else if (command == Commands.EAST) {
             if (!location.getDirections().get(Commands.EAST)) {
+                removeWeapon(Commands.EAST);
                 location.getMonsters().remove(Commands.EAST);
                 location.getDirections().put(Commands.EAST, true);
                 adjacentRoom = map.getMap()[player.getXIndex() + 1][player.getYIndex()];
@@ -77,6 +80,7 @@ public class GameController {
             }
         } else if (command == Commands.WEST) {
             if (!location.getDirections().get(Commands.WEST)) {
+                removeWeapon(Commands.WEST);
                 location.getMonsters().remove(Commands.WEST);
                 location.getDirections().put(Commands.WEST, true);
                 adjacentRoom = map.getMap()[player.getXIndex() - 1][player.getYIndex()];
@@ -106,8 +110,9 @@ public class GameController {
         } else if (command == Commands.LEAVE_TREASURES) {
             leaveTreasures();
         } else if (command == Commands.OUT) {
+            //TODO: implement out functionality
+            /*
             if (player.getTreasures().size() > 0) {
-                //TODO: implement out functionality
                 boolean stoleTreasure = false;
                 int i = 0;
                 while(!stoleTreasure) {
@@ -117,7 +122,7 @@ public class GameController {
                     }
                     i++;
                 }
-            }
+            }*/
         } else if (command == Commands.POINTS) {
             outputtable.outputPoints(player, player.getMoveCount());
         } else if (command == Commands.HELP) {
@@ -137,8 +142,17 @@ public class GameController {
         player.getInventory().removeIf(item -> item instanceof Treasure);
     }
 
-    public String findWayOut() {
-        return "";
+    /**
+     * Removes the weapon needed to kill the monster from the player's inventory
+     * @param command the direction the player is going
+     */
+    public void removeWeapon(Commands command) {
+        for (Item item : player.getWeapons()) {
+            Weapon weapon = (Weapon)item;
+            if (weapon.getMonster().equals(player.getLocation().getMonsters().get(command))) {
+                player.getInventory().remove(item);
+            }
+        }
     }
 
 }
