@@ -1,5 +1,5 @@
 
-import java.util.List;
+import Items.Item;
 
 /**
  * Output Getter implements the outputtable interface to output all the results and such of the battle pets game
@@ -18,15 +18,38 @@ public class OutputGetter implements Outputtable{
         System.out.println("distance between adjacent rooms.\n");
     }
 
-    public void outputWinMessage(){
+    public void outputQuitMessage(Player player, int movementNumber){
 
     }
 
-    public void outputInventory(){}
+    public void outputInventory(Player player){
+        System.out.println("This is your list of items: ");
+        for(Item item : player.getInventory()){
+            System.out.println(item.getName());
+        }
+        System.out.println("\n");
+    }
 
-    public void outputRejectionMessage(){}
+    public void outputRejectionMessage(){
 
-    public void outputRoomDescription(){}
+    }
+
+    public void outputRoomDescription(Room room)
+    {
+        System.out.println(room.getDescription());
+        for(Item item: room.getItems()){
+            System.out.println("A " + item.getName() + " is in this room. ");
+        }
+        room.getMonsters().forEach((k, v) -> System.out.println(v.getName() + " is blocking " + k + " passage."));
+
+        for(Commands direction : room.getDirections().keySet()){
+            if(room.getDirections().get(direction)){
+                System.out.println("There is a passage " + direction);
+            }
+        }
+    }
+
+    public void outputPoints(Player player, int movementNumber){}
 
 
 }

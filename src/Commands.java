@@ -1,4 +1,4 @@
-public enum commands {
+public enum Commands {
     NORTH,
     SOUTH,
     EAST,
@@ -9,11 +9,10 @@ public enum commands {
     INVENTORY,
     CARRY,
     QUIT,
-    INVALID,
     OUT, //not being used yet
-    LEAVE_TREASURES, //not being used yet
+    LEAVE_TREASURES,
     POINTS, //not being used yet
-    INVALID
+    INVALID;
 
 
 }

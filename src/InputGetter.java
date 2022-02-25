@@ -1,4 +1,5 @@
-import java.util.List;
+import Items.Weapon;
+
 import java.util.Scanner;
 
 
@@ -8,121 +9,160 @@ import java.util.Scanner;
 public class InputGetter implements Inputtable {
     Scanner read = new Scanner(System.in);
 
-    public commands inputCommand(Player player){
+    public Commands inputCommand(Player player){
         String command;
         System.out.println("Command? ");
         boolean valid = false;
-        Room room = new Room();
 
         command = read.nextLine();
         switch(command){
-            case 'n':
-                if(player.getLocation().getDirection().get(Direction.NORTH) == false){
-                    if(player.getMonsters().contains(Direction.NORTH) == true){
+            case "n":
+                if(!player.getLocation().getDirections().get(Commands.NORTH)){
+                    if(player.getLocation().getMonsters().containsKey(Commands.NORTH)){
                         for(int i = 0; i < player.getWeapons().size(); i++){
-                            if(player.getWeapons().get(i).getMonster() == player.getMonsters().get(Direction.NORTH)){
+                            Weapon weapon = (Weapon)player.getWeapons().get(i);
+                            if(weapon.getMonster() == player.getLocation().getMonsters().get(Commands.NORTH)){
                                 valid = true;
                                 command = "NORTH";
                             }
                             else{
+                                System.out.println("Passageway is blocked.");
                                 valid = false;
                                 command = "INVALID";
                             }
                         }
                     }
                     else{
+                        System.out.println("You can't go that way.");
                         command = "INVALID";
                         valid = false;
                     }
+                } else {
+                    valid = true;
+                    command = "NORTH";
                 }
-            case 's':
-                if(player.getLocation().getDirection().get(Direction.SOUTH) == false){
-                    if(player.getMonsters().contains(Direction.SOUTH) == true){
+                break;
+            case "s":
+                if(!player.getLocation().getDirections().get(Commands.SOUTH)){
+                    if(player.getLocation().getMonsters().containsKey(Commands.SOUTH)){
                         for(int i = 0; i < player.getWeapons().size(); i++){
-                            if(player.getWeapons().get(i).getMonster() == player.getMonsters().get(Direction.SOUTH)){
+                            Weapon weapon = (Weapon)player.getWeapons().get(i);
+                            if(weapon.getMonster() == player.getLocation().getMonsters().get(Commands.SOUTH)){
                                 valid = true;
                                 command = "SOUTH";
                             }
                             else{
+                                System.out.println("Passageway is blocked.");
                                 command = "INVALID";
                                 valid = false;
                             }
                         }
                     }
                     else{
+                        System.out.println("You can't go that way.");
                         command = "INVALID";
                         valid = false;
                     }
+                } else {
+                    valid = true;
+                    command = "SOUTH";
                 }
-            case 'e':
-                if(player.getLocation().getDirection().get(Direction.EAST) == false){
-                    if(player.getMonsters().contains(Direction.EAST) == true){
+                break;
+            case "e":
+                if(!player.getLocation().getDirections().get(Commands.EAST)){
+                    if(player.getLocation().getMonsters().containsKey(Commands.EAST)){
                         for(int i = 0; i < player.getWeapons().size(); i++){
-                            if(player.getWeapons().get(i).getMonster() == player.getMonsters().get(Direction.EAST)){
+                            Weapon weapon = (Weapon)player.getWeapons().get(i);
+                            if(weapon.getMonster() == player.getLocation().getMonsters().get(Commands.EAST)){
                                 valid = true;
                                 command = "EAST";
                             }
                             else{
+                                System.out.println("Passageway is blocked.");
                                 valid = false;
                                 command = "INVALID";
                             }
                         }
                     }
                     else{
+                        System.out.println("You can't go that way.");
                         command = "INVALID";
                         valid = false;
                     }
+                } else {
+                    valid = true;
+                    command = "EAST";
                 }
-            case 'w':
-                if(player.getLocation().getDirection().get(Direction.WEST) == false){
-                    if(player.getMonsters().contains(Direction.WEST)){
+                break;
+            case "w":
+                if(!player.getLocation().getDirections().get(Commands.WEST)){
+                    if(player.getLocation().getMonsters().containsKey(Commands.WEST)){
                         for(int i = 0; i < player.getWeapons().size(); i++){
-                            if(player.getWeapons().get(i).getMonster() == player.getMonsters().get(Direction.WEST)){
+                            Weapon weapon = (Weapon)player.getWeapons().get(i);
+                            if(weapon.getMonster() == player.getLocation().getMonsters().get(Commands.WEST)){
                                 valid = true;
                                 command = "WEST";
                             }
                             else {
+                                System.out.println("Passageway is blocked.");
                                 command = "INVALID";
                                 valid = false;
                             }
                         }
                     }
                     else{
+                        System.out.println("You can't go that way.");
                         command = "INVALID";
                         valid = false;
                     }
+                } else {
+                    valid = true;
+                    command = "WEST";
                 }
-            case 'u':
+                break;
+            case "u":
                 // Not used yet
                 valid = false;
                 command = "UP";
-            case 'd':
+                break;
+            case "d":
                 // Not used yet
                 valid = false;
                 command = "DOWN";
-            case 'h':
+                break;
+            case "h":
                 valid = true;
                 command = "HELP";
-            case 'i':
+                break;
+            case "i":
                 valid = true;
                 command = "INVENTORY";
-            case 'c':
+                break;
+            case "c":
                 valid = true;
                 command = "CARRY";
-            case 'l':
+                break;
+            case "l":
                 valid = true;
                 command = "LEAVE";
-            case 'o':
+                break;
+            case "o":
                 valid = true;
                 command = "OUT";
-            case 'q':
+                break;
+            case "q":
                 valid = true;
                 command = "QUIT";
+                break;
+            default:
+                valid = false;
+                command = "INVALID";
+                break;
         }
 
         if(valid)
-            return commands.valueOf(command);
+            return Commands.valueOf(command);
         else
-            return commands.INVALID;
+            return Commands.INVALID;
     }
 }
