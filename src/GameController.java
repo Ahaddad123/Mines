@@ -5,7 +5,7 @@
 public class GameController {
 
     private static final int NUM_TREASURES = 24;
-    private final RoomController roomController = new RoomController();
+    private RoomController roomController;
     private final ItemController itemController = new ItemController();
     private Player player;
     private Map map;
@@ -25,7 +25,8 @@ public class GameController {
         // initialize map and player
         Outputtable outputtable = IOManager.getInstance().getOutputtable();
         Inputtable inputtable = IOManager.getInstance().getInputtable();
-        roomController.createMap(roomController.createRooms(itemController.createItems(),itemController.createMonsters()));
+
+        roomController = new RoomController(itemController.createWeapons(),itemController.createTreasures());
         map = roomController.getMap();
         player = new Player(roomController.getEntrance(),
                 roomController.getXIndex(), roomController.getYIndex(), roomController.getZIndex());
@@ -50,25 +51,38 @@ public class GameController {
      */
     public void killMonster(Command command) {
         Room location = player.getLocation();
+        Room adjacentRoom;
         if (command == Command.NORTH) {
             if (location.getDirections().get(Direction.NORTH) == false) {
                 location.getMonsters().remove(Direction.NORTH);
-                map.getRooms()[player.getXIndex()][player.getYIndex() - 1].getMonsters().remove(Direction.SOUTH);
+                location.getDirections().put(Direction.NORTH, true);
+                adjacentRoom = map.getRooms()[player.getXIndex()][player.getYIndex() - 1];
+                adjacentRoom.getMonsters().remove(Direction.SOUTH);
+                adjacentRoom.getDirections().put(Direction.SOUTH, true);
             }
         } else if (command == Command.SOUTH) {
             if (location.getDirections().get(Direction.SOUTH) == false) {
                 location.getMonsters().remove(Direction.SOUTH);
-                map.getRooms()[player.getXIndex()][player.getYIndex() + 1].getMonsters().remove(Direction.NORTH);
+                location.getDirections().put(Direction.SOUTH, true);
+                adjacentRoom = map.getRooms()[player.getXIndex()][player.getYIndex() + 1];
+                adjacentRoom.getMonsters().remove(Direction.NORTH);
+                adjacentRoom.getDirections().put(Direction.NORTH, true);
             }
         } else if (command == Command.EAST) {
             if (location.getDirections().get(Direction.EAST) == false) {
                 location.getMonsters().remove(Direction.EAST);
-                map.getRooms()[player.getXIndex() + 1][player.getYIndex()].getMonsters().remove(Direction.WEST);
+                location.getDirections().put(Direction.EAST, true);
+                adjacentRoom = map.getRooms()[player.getXIndex() + 1][player.getYIndex()];
+                adjacentRoom.getMonsters().remove(Direction.WEST);
+                adjacentRoom.getDirections().put(Direction.WEST, true);
             }
         } else if (command == Command.WEST) {
             if (location.getDirections().get(Direction.WEST) == false) {
                 location.getMonsters().remove(Direction.WEST);
-                map.getRooms()[player.getXIndex() - 1][player.getYIndex()].getMonsters().remove(Direction.EAST);
+                location.getDirections().put(Direction.WEST, true);
+                adjacentRoom = map.getRooms()[player.getXIndex() - 1][player.getYIndex()];
+                adjacentRoom.getMonsters().remove(Direction.EAST);
+                adjacentRoom.getDirections().put(Direction.EAST, true);
             }
         }
     }
