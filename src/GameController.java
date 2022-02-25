@@ -1,5 +1,6 @@
 import Items.Item;
 import Items.ItemController;
+import Items.Treasure;
 
 /**
  * @author Makenna Halvensleben
@@ -8,7 +9,6 @@ import Items.ItemController;
 public class GameController {
 
     private static final int NUM_TREASURES = 24;
-    private RoomController roomController;
     private final ItemController itemController = new ItemController();
     private Player player;
     private Map map;
@@ -29,7 +29,7 @@ public class GameController {
         Outputtable outputtable = IOManager.getInstance().getOutputtable();
         Inputtable inputtable = IOManager.getInstance().getInputtable();
 
-        roomController = new RoomController(itemController.createWeapons(),itemController.createTreasures());
+        RoomController roomController = new RoomController(itemController.createWeapons(), itemController.createTreasures());
         map = roomController.getMap();
         player = new Player(roomController.getMap().getMap()[roomController.getStartRow()][roomController.getStartColumn()],
                 roomController.getStartRow(), roomController.getStartColumn(), roomController.getStartFloor());
@@ -37,55 +37,51 @@ public class GameController {
 
         // game loop
         do {
-            outputtable.outputRoom(player.getLocation());
-            Command command = inputtable.inputCommand(player);
+            outputtable.outputRoomDescription(player.getLocation());
+            Commands command = inputtable.inputCommand(player);
             handleCommand(command);
-        } while(!hasWon() && !quit);
-        if (hasWon()) {
-            outputtable.outputWinMessage();
-        } else {
-            outputtable.outputQuit();
-        }
+        } while(!quit);
+        outputtable.outputQuit(player, player.getMoveCount());
     }
 
     /**
      * Checks if there are any monsters that need to be killed when the player moves.
      * @param command direction to go
      */
-    public void killMonster(Command command) {
+    public void killMonster(Commands command) {
         Room location = player.getLocation();
         Room adjacentRoom;
-        if (command == Command.NORTH) {
-            if (location.getDirections().get(Direction.NORTH) == false) {
-                location.getMonsters().remove(Direction.NORTH);
-                location.getDirections().put(Direction.NORTH, true);
-                adjacentRoom = map.getRooms()[player.getXIndex()][player.getYIndex() - 1];
-                adjacentRoom.getMonsters().remove(Direction.SOUTH);
-                adjacentRoom.getDirections().put(Direction.SOUTH, true);
+        if (command == Commands.NORTH) {
+            if (!location.getDirections().get(Commands.NORTH)) {
+                location.getMonsters().remove(Commands.NORTH);
+                location.getDirections().put(Commands.NORTH, true);
+                adjacentRoom = map.getMap()[player.getXIndex()][player.getYIndex() - 1];
+                adjacentRoom.getMonsters().remove(Commands.SOUTH);
+                adjacentRoom.getDirections().put(Commands.SOUTH, true);
             }
-        } else if (command == Command.SOUTH) {
-            if (location.getDirections().get(Direction.SOUTH) == false) {
-                location.getMonsters().remove(Direction.SOUTH);
-                location.getDirections().put(Direction.SOUTH, true);
-                adjacentRoom = map.getRooms()[player.getXIndex()][player.getYIndex() + 1];
-                adjacentRoom.getMonsters().remove(Direction.NORTH);
-                adjacentRoom.getDirections().put(Direction.NORTH, true);
+        } else if (command == Commands.SOUTH) {
+            if (!location.getDirections().get(Commands.SOUTH)) {
+                location.getMonsters().remove(Commands.SOUTH);
+                location.getDirections().put(Commands.SOUTH, true);
+                adjacentRoom = map.getMap()[player.getXIndex()][player.getYIndex() + 1];
+                adjacentRoom.getMonsters().remove(Commands.NORTH);
+                adjacentRoom.getDirections().put(Commands.NORTH, true);
             }
-        } else if (command == Command.EAST) {
-            if (location.getDirections().get(Direction.EAST) == false) {
-                location.getMonsters().remove(Direction.EAST);
-                location.getDirections().put(Direction.EAST, true);
-                adjacentRoom = map.getRooms()[player.getXIndex() + 1][player.getYIndex()];
-                adjacentRoom.getMonsters().remove(Direction.WEST);
-                adjacentRoom.getDirections().put(Direction.WEST, true);
+        } else if (command == Commands.EAST) {
+            if (!location.getDirections().get(Commands.EAST)) {
+                location.getMonsters().remove(Commands.EAST);
+                location.getDirections().put(Commands.EAST, true);
+                adjacentRoom = map.getMap()[player.getXIndex() + 1][player.getYIndex()];
+                adjacentRoom.getMonsters().remove(Commands.WEST);
+                adjacentRoom.getDirections().put(Commands.WEST, true);
             }
-        } else if (command == Command.WEST) {
-            if (location.getDirections().get(Direction.WEST) == false) {
-                location.getMonsters().remove(Direction.WEST);
-                location.getDirections().put(Direction.WEST, true);
-                adjacentRoom = map.getRooms()[player.getXIndex() - 1][player.getYIndex()];
-                adjacentRoom.getMonsters().remove(Direction.EAST);
-                adjacentRoom.getDirections().put(Direction.EAST, true);
+        } else if (command == Commands.WEST) {
+            if (!location.getDirections().get(Commands.WEST)) {
+                location.getMonsters().remove(Commands.WEST);
+                location.getDirections().put(Commands.WEST, true);
+                adjacentRoom = map.getMap()[player.getXIndex() - 1][player.getYIndex()];
+                adjacentRoom.getMonsters().remove(Commands.EAST);
+                adjacentRoom.getDirections().put(Commands.EAST, true);
             }
         }
     }
@@ -94,22 +90,22 @@ public class GameController {
      * Handles the input from the user and calls the needed methods for each command.
      * @param command user's input
      */
-    public void handleCommand(Command command) {
+    public void handleCommand(Commands command) {
         Outputtable outputtable = IOManager.getInstance().getOutputtable();
-        if (command == Command.NORTH || command == Command.SOUTH || command == Command.EAST ||
-                command == Command.WEST || command == Command.UP || command == Command.DOWN) {
+        if (command == Commands.NORTH || command == Commands.SOUTH || command == Commands.EAST ||
+                command == Commands.WEST || command == Commands.UP || command == Commands.DOWN) {
             killMonster(command);
             player.move(command, map);
-        } else if (command == Command.CARRY) {
+        } else if (command == Commands.CARRY) {
             for (Item item : player.getLocation().getItems()) {
                 player.getInventory().add(item);
             }
             player.getLocation().getItems().clear();
-        } else if (command == Command.INVENTORY) {
+        } else if (command == Commands.INVENTORY) {
             outputtable.outputInventory(player);
-        } else if (command == Command.LEAVE_TREASURES) {
+        } else if (command == Commands.LEAVE_TREASURES) {
             leaveTreasures();
-        } else if (command == Command.OUT) {
+        } else if (command == Commands.OUT) {
             if (player.getTreasures().size() > 0) {
                 //TODO: implement out functionality
                 boolean stoleTreasure = false;
@@ -123,25 +119,15 @@ public class GameController {
                 }
                 outputtable.outputWayOut(findWayOut());
             }
-        } else if (command == Command.POINTS) {
-            outputtable.outputPoints(player, moveCount);
-        } else if (command == Command.HELP) {
+        } else if (command == Commands.POINTS) {
+            outputtable.outputPoints(player, player.getMoveCount());
+        } else if (command == Commands.HELP) {
             outputtable.outputHelp();
-        } else if (command == Command.QUIT) {
+        } else if (command == Commands.QUIT) {
             quit = true;
         } else {
             outputtable.outputInvalid();
         }
-    }
-
-    /**
-     * Checks if the player has won by collecting all the treasures and returning to the exit.
-     * @return if the player has won
-     */
-    public boolean hasWon() {
-        return roomController.getEntrance().getItems().size() == NUM_TREASURES
-                && player.getLocation() == roomController.getMap().getEntrance();
-        return true;
     }
 
     /**
@@ -151,16 +137,11 @@ public class GameController {
         for (Item item : player.getTreasures()) {
             player.getLocation().getItems().add(item);
         }
-        for (Item item : player.getInventory()) {
-            if (item instanceof Treasure) {
-                player.getInventory().remove(item);
-            }
-        }
+        player.getInventory().removeIf(item -> item instanceof Treasure);
     }
 
     public String findWayOut() {
-        String wayOut = "";
-        return wayOut;
+        return "";
     }
 
 }
