@@ -78,4 +78,52 @@ public class RoomController {
    public Map getMap() {
       return map;
    }
+
+   /**
+    * getter for start row
+    * @return start row
+    */
+   public int getStartRow() {
+      return startRow;
+   }
+
+   /**
+    * getter for start column
+    * @return start column
+    */
+   public int getStartColumn() {
+      return startColumn;
+   }
+
+   /**
+    * getter for start floor
+    * @return start floor
+    */
+   public int getStartFloor() {
+      return startFloor;
+   }
+
+   /**
+    * getter for current row
+    * @return current row
+    */
+   public int getCurrentRow() {
+      return currentRow;
+   }
+
+   /**
+    * getter for current column
+    * @return current column
+    */
+   public int getCurrentColumn() {
+      return currentColumn;
+   }
+
+   /**
+    * getter current floor
+    * @return current floor
+    */
+   public int getCurrentFloor() {
+      return currentFloor;
+   }
 }
