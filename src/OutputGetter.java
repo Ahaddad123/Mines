@@ -1,10 +1,15 @@
 
-import java.util.List;
+import Items.Item;
 
 /**
  * Output Getter implements the outputtable interface to output all the results and such of the battle pets game
  * */
 public class OutputGetter implements Outputtable{
+    /**
+     * outputHelp outputs the help screen and all the commands necessary to play the game.
+     * Commands currently not working: O, L, and P
+     *
+     * */
     public void outputHelp(){
         System.out.println("You asked for help\n");
         System.out.println("Commands in the game are \"N\", \"S\" \"E\", \"W\", \"U\", \"D\".\n");
@@ -18,18 +23,48 @@ public class OutputGetter implements Outputtable{
         System.out.println("distance between adjacent rooms.\n");
     }
 
-    public void outputQuitMessage(Player player, int movementNumber){
-
+    /**
+     * outputInventory outputs the items in the users inventory
+     *
+     * @param player gives information on the player which includes their items
+     * */
+    public void outputInventory(Player player){
+        System.out.println("This is your list of items: ");
+        for(Item item : player.getInventory()){
+            System.out.println(item.getName());
+        }
+        System.out.println("\n");
     }
 
-    public void outputInventory(Player player){}
+    /**
+     * outputRoomDescription outputs the description of the room the user has entered
+     * It also displays any monsters blocking any passages in the room, and any passages that are
+     * just open
+     *
+     * @param room gives information on the room and monsters in the room
+     * */
+    public void outputRoomDescription(Room room)
+    {
+        System.out.println(room.getDescription());
+        for(Item item: room.getItems()){
+            System.out.println("A " + item.getName() + " is in this room. ");
+        }
+        room.getMonsters().forEach((k, v) -> System.out.println(v.getName() + " is blocking " + k + " passage."));
 
-    public void outputRejectionMessage(){}
-
-    public void outputRoomDescription(Room room){
-
+        for(Commands direction : room.getDirections().keySet()){
+            if(room.getDirections().get(direction)){
+                System.out.println("There is a passage " + direction);
+            }
+        }
     }
 
+    /**
+     * outputPoints outputs the treasures and points the player has accumulated
+     * This is not implemented in this iteration
+     *
+     * @param player this gives the player information
+     * @param movementNumber this gives the number of moves the player has made
+     * */
     public void outputPoints(Player player, int movementNumber){}
 
 

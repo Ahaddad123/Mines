@@ -1,10 +1,14 @@
 import java.util.List;
-
+ /**
+  * Outputtable is an interface for OutputGetter
+  * */
 public interface Outputtable {
+
     public void outputHelp();
-    public void outputQuitMessage(Player player, int movementNumber);
+
     public void outputInventory(Player player);
-    public void outputRejectionMessage();
+
     public void outputRoomDescription(Room room);
+
     public void outputPoints(Player player, int movementNumber);
 }

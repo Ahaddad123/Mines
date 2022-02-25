@@ -53,7 +53,7 @@ public class ItemController {
         weapons.add(new Weapon("Missing Letter", new Monster("Spelling Mistake")));
         weapons.add(new Weapon("Correct Operator", new Monster("Wrong Operator")));
         weapons.add(new Weapon("Constant Declaration", new Monster("Magic Number")));
-        weapons.add(new Weapon("Correct Variable Type", new Monster("Variable Type")));
+        weapons.add(new Weapon("Correct Variable Type", new Monster("Wrong Variable Type")));
         weapons.add(new Weapon("New Method", new Monster("Missing Method")));
         weapons.add(new Weapon("Compiler", new Monster("Failed Build")));
         weapons.add(new Weapon("Lower Case First Letter", new Monster("Bad Naming Convention")));

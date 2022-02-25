@@ -1,5 +1,5 @@
 /**
- * IO Manager manages the calls for all the inputs and outputs for the battle pets game. Every call goes through IO Manager first.
+ * IO Manager manages the calls for all the inputs and outputs for the mines game. Every call goes through IO Manager first.
  *
  * */
 public class IOManager {
