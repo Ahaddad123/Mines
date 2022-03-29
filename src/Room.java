@@ -8,7 +8,7 @@ import Items.Monster;
  * @author Jasmine Krahn
  */
 public class Room {
-   private HashMap<Commands, Boolean> directions;
+   private HashMap<Commands, Integer> directions;
    private List<Item> items;
    private HashMap<Commands, Monster> monsters;
    private String description;
@@ -25,7 +25,7 @@ public class Room {
     * @param column column of map array
     * @param description description of the room
     */
-   Room(HashMap<Commands, Boolean> directions, List<Item> items,
+   Room(HashMap<Commands, Integer> directions, List<Item> items,
         HashMap<Commands, Monster> monsters, int row,
         int column, String description)
    {
@@ -42,7 +42,7 @@ public class Room {
     * Getter for open exits
     * @return open exits
     */
-   public HashMap<Commands, Boolean> getDirections() {
+   public HashMap<Commands, Integer> getDirections() {
       return directions;
    }
 

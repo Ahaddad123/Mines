@@ -23,7 +23,7 @@ public class InputGetter implements Inputtable {
         command = read.nextLine();
         switch(command){
             case "n":
-                if(!player.getLocation().getDirections().get(Commands.NORTH)){
+                if(player.getLocation().getDirections().get(Commands.NORTH) == 2){
                     if(player.getLocation().getMonsters().containsKey(Commands.NORTH)){
                         for(int i = 0; i < player.getWeapons().size(); i++){
                             Weapon weapon = (Weapon)player.getWeapons().get(i);
@@ -48,7 +48,7 @@ public class InputGetter implements Inputtable {
                 }
                 break;
             case "s":
-                if(!player.getLocation().getDirections().get(Commands.SOUTH)){
+                if(player.getLocation().getDirections().get(Commands.SOUTH) == 2){
                     if(player.getLocation().getMonsters().containsKey(Commands.SOUTH)){
                         for(int i = 0; i < player.getWeapons().size(); i++){
                             Weapon weapon = (Weapon)player.getWeapons().get(i);
@@ -73,7 +73,7 @@ public class InputGetter implements Inputtable {
                 }
                 break;
             case "e":
-                if(!player.getLocation().getDirections().get(Commands.EAST)){
+                if(player.getLocation().getDirections().get(Commands.EAST) == 2){
                     if(player.getLocation().getMonsters().containsKey(Commands.EAST)){
                         for(int i = 0; i < player.getWeapons().size(); i++){
                             Weapon weapon = (Weapon)player.getWeapons().get(i);
@@ -98,7 +98,7 @@ public class InputGetter implements Inputtable {
                 }
                 break;
             case "w":
-                if(!player.getLocation().getDirections().get(Commands.WEST)){
+                if(player.getLocation().getDirections().get(Commands.WEST) == 2){
                     if(player.getLocation().getMonsters().containsKey(Commands.WEST)){
                         for(int i = 0; i < player.getWeapons().size(); i++){
                             Weapon weapon = (Weapon)player.getWeapons().get(i);

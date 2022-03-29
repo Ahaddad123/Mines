@@ -58,14 +58,14 @@ public class Map {
     * @param j column index
     * @param room room description
     */
-   private void createRoom(boolean n, boolean s, boolean e, boolean w,
-                           boolean u, boolean d, Monster monster1,
+   private void createRoom(int n, int s, int e, int w,
+                           int u, int d, Monster monster1,
                            Commands direction1, Monster monster2,
                            Commands direction2,
                            Item item1, Item item2, Item item3, int i, int j,
                            String room)
    {
-      HashMap<Commands, Boolean> db= new HashMap<>();
+      HashMap<Commands, Integer> db= new HashMap<>();
       db.put(Commands.NORTH, n);
       db.put(Commands.SOUTH, s);
       db.put(Commands.EAST, e);
@@ -106,26 +106,26 @@ public class Map {
     */
    private void firstFloorFirstRow()
    {
-      createRoom(false, true, false, false, false, false,
+      createRoom(2, 1, 2, 2, 2, 2,
               new Monster("Code in Notepad"), Commands.EAST,
               null, null, null, null, null,
               0, 0, "Video Card");
 
-      createRoom(false, false, false, false, false, false,
+      createRoom(2, 2, 2, 2, 2, 2,
               new Monster("Code in Notepad"), Commands.WEST,
               null, null, treasures.get(0), treasures.get(1),
               treasures.get(2), 1, 0, "Power Supply");
 
-      createRoom(false, false, true, false, false, false,
+      createRoom(2, 2, 1, 2, 2, 2,
               new Monster("Missing Semicolon"), Commands.SOUTH,
               null, null, null, null,
               null, 2, 0, "Motherboard");
 
-      createRoom(false, true, true, true, false, false,
+      createRoom(2, 1, 1, 1, 2, 2,
               null, null, null, null, weapons.get(2),
               null, null, 3, 0, "RAM");
 
-      createRoom(false, false, false, true, false, false,
+      createRoom(2, 2, 2, 1, 2, 2,
               new Monster("Spelling Mistake"), Commands.SOUTH,
               null, null, null, null,
               null, 4, 0, "CPU");
@@ -136,26 +136,26 @@ public class Map {
     */
    private void firstFloorSecondRow()
    {
-      createRoom(true, false, true, false, false, false,
+      createRoom(1, 2, 1, 2, 2, 2,
               new Monster("Failed Build"), Commands.SOUTH,
               null, null, weapons.get(17), null, null,
               0, 1, "Hard Drive");
 
-      createRoom(false, false, true, true, false, false,
+      createRoom(2, 2, 1, 1, 2, 2,
               null, null,
               null, null, null, null,
               null, 1, 1, "Solid-State Drive");
 
-      createRoom(false, true, false, true, false, false,
+      createRoom(2, 1, 2, 1, 2, 2,
               new Monster("Missing Semicolon"), Commands.NORTH,
               null, null, null, null,
               null, 2, 1, "Optical Disk Drive");
 
-      createRoom(true, true, false, false, false, false,
+      createRoom(1, 1, 2, 2, 2, 2,
               null, null, null, null, null,
               null, null, 3, 1, "Monitor");
 
-      createRoom(false, false, false, false, false, false,
+      createRoom(2, 2, 2, 2, 2, 2,
               new Monster("Spelling Mistake"), Commands.NORTH,
               new Monster("Wrong Operator"), Commands.SOUTH,
               weapons.get(1), treasures.get(3),
@@ -167,26 +167,26 @@ public class Map {
     */
    private void firstFloorThirdRow()
    {
-      createRoom(false, true, false, false, false, false,
+      createRoom(2, 1, 2, 2, 2, 2,
               new Monster("Failed Build"), Commands.NORTH,
               null, null, null, null, null,
               0, 2, "Mouse");
 
-      createRoom(false, false, false, false, false, false,
+      createRoom(2, 2, 2, 2, 2, 2,
               new Monster("Missing Method"), Commands.SOUTH,
               null, null, treasures.get(5), treasures.get(6),
               weapons.get(3), 1, 2, "Flash Drive");
 
-      createRoom(true, true, true, false, false, false,
+      createRoom(1, 1, 1, 2, 2, 2,
               null, null,
               null, null, weapons.get(12), null,
               null, 2, 2, "Printer");
 
-      createRoom(true, false, true, true, false, false,
+      createRoom(1, 2, 1, 1, 2, 2,
               null, null, null, null, null,
               null, null, 3, 2, "Speakers");
 
-      createRoom(false, true, false, true, false, false,
+      createRoom(2, 1, 2, 1, 2, 2,
               new Monster("Wrong Operator"), Commands.NORTH,
               null, null, null, null,
               null, 4, 2, "Floppy Disk");
@@ -197,26 +197,26 @@ public class Map {
     */
    private void firstFloorForthRow()
    {
-      createRoom(true, true, true, false, false, false,
+      createRoom(1, 1, 1, 2, 2, 2,
               null, null,
               null, null, weapons.get(5), null, null,
               0, 3, "Webcam");
 
-      createRoom(false, false, true, true, false, false,
+      createRoom(2, 2, 1, 1, 2, 2,
               new Monster("Missing Method"), Commands.NORTH,
               null, null, null, null,
               null, 1, 3, "Microphone");
 
-      createRoom(true, false, true, true, false, false,
+      createRoom(1, 2, 1, 1, 2, 2,
               null, null,
               null, null, null, null,
               null, 2, 3, "Modem");
 
-      createRoom(false, false, false, true, false, false,
+      createRoom(2, 2, 2, 1, 2, 2,
               new Monster("Magic Number"), Commands.SOUTH, null, null, treasures.get(7),
               null, null, 3, 3, "Router");
 
-      createRoom(true, true, false, false, false, false,
+      createRoom(1, 1, 2, 2, 2, 2,
               null, null,
               null, null, weapons.get(4), null,
               null, 4, 3, "Network Switch");
@@ -227,27 +227,27 @@ public class Map {
     */
    private void firstFloorFifthRow()
    {
-      createRoom(true, false, false, false, false, false,
+      createRoom(1, 2, 2, 2, 2, 2,
               new Monster("Wrong Variable Type"), Commands.EAST,
               null, null, treasures.get(8), null, null,
               0, 4, "Firewall");
 
-      createRoom(false, false, true, false, false, false,
+      createRoom(2, 2, 1, 2, 2, 2,
               new Monster("Wrong Variable Type"), Commands.WEST,
               null, null, null, null,
               null, 1, 4, "Fan");
 
-      createRoom(false, false, true, true, false, false,
+      createRoom(2, 2, 1, 1, 2, 2,
               null, null,
               null, null, weapons.get(13), null,
               null, 2, 4, "Battery");
 
-      createRoom(false, false, false, true, false, false,
+      createRoom(2, 2, 2, 1, 2, 2,
               new Monster("Magic Number"), Commands.NORTH, null, null,
               treasures.get(9),
               null, null, 3, 4, "Graphics Card");
 
-      createRoom(true, false, false, false, false, false,
+      createRoom(1, 2, 2, 2, 2, 2,
               null, null,
               null, null, null, null,
               null, 4, 4, "Operating System");

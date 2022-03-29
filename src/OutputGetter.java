@@ -52,7 +52,7 @@ public class OutputGetter implements Outputtable{
         room.getMonsters().forEach((k, v) -> System.out.println(v.getName() + " is blocking " + k + " passage."));
 
         for(Commands direction : room.getDirections().keySet()){
-            if(room.getDirections().get(direction)){
+            if(room.getDirections().get(direction) == 1){
                 System.out.println("There is a passage " + direction);
             }
         }
