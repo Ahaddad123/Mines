@@ -1,3 +1,7 @@
+import Items.ItemController;
+
+import java.util.ArrayList;
+
 /**
  * @author Makenna Halvensleben
  * Main class that runs the main method.

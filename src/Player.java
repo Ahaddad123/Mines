@@ -176,7 +176,7 @@ public class Player {
             this.zIndex++;
         }
         //TODO: change to 3D array
-        this.location = map.getMap()[this.xIndex][this.yIndex];
+        this.location = map.getMap()[this.xIndex][this.yIndex][this.zIndex];
         this.moveCount++;
     }
 }

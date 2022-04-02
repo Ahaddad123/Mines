@@ -37,7 +37,7 @@ public class RoomController {
     * sets start to the room the player is started in
     * @param start room player started in
     */
-   private void setStartRoom(Room start)
+   public void setStartRoom(Room start)
    {
       startRoom = start;
       startRow = start.getRow();

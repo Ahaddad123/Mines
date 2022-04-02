@@ -109,4 +109,34 @@ public class ItemController {
 
         return monsters;
     }
+
+    public ArrayList<String> createRoomDescriptions() {
+        ArrayList<String> descriptions = new ArrayList<>();
+        descriptions.add("Video Card");
+        descriptions.add("Power Supply");
+        descriptions.add("Motherboard");
+        descriptions.add("RAM");
+        descriptions.add("CPU");
+        descriptions.add("Hard Drive");
+        descriptions.add("Solid-State Drive");
+        descriptions.add("Optical Disk Drive");
+        descriptions.add("Monitor");
+        descriptions.add("Keyboard");
+        descriptions.add("Mouse");
+        descriptions.add("Flash Drive");
+        descriptions.add("Printer");
+        descriptions.add("Speakers");
+        descriptions.add("Floppy Disk");
+        descriptions.add("Webcam");
+        descriptions.add("Microphone");
+        descriptions.add("Modem");
+        descriptions.add("Router");
+        descriptions.add("Network Switch");
+        descriptions.add("Firewall");
+        descriptions.add("Fan");
+        descriptions.add("Battery");
+        descriptions.add("Graphics Card");
+        descriptions.add("Operating System");
+        return descriptions;
+    }
 }
