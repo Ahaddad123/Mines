@@ -171,9 +171,9 @@ public class Player {
         } else if (command == Commands.WEST) {
             this.xIndex--;
         } else if (command == Commands.UP) {
-            this.zIndex--;
-        } else if (command == Commands.DOWN) {
             this.zIndex++;
+        } else if (command == Commands.DOWN) {
+            this.zIndex--;
         }
         //TODO: change to 3D array
         this.location = map.getMap()[this.xIndex][this.yIndex][this.zIndex];

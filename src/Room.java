@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import Items.Item;
@@ -37,6 +38,14 @@ public class Room {
       this.column = column;
       this.floor = floor;
       this.floor = 0;
+   }
+
+   Room(int i, int j, int k) {
+      this.items = new ArrayList<>();
+      this.directions = new HashMap<>();
+      this.row = i;
+      this.column = j;
+      this.floor = k;
    }
 
    /**
