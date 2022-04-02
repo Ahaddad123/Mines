@@ -1,4 +1,5 @@
 import Items.Item;
+import Items.Monster;
 
 import java.util.List;
 
@@ -25,9 +26,9 @@ public class RoomController {
    /**
     * Constructor - make sure its the same reference map
     */
-   RoomController(List<Item> weapons, List<Item> treasures)
+   RoomController(List<Item> weapons, List<Item> treasures, List<Monster> monsters)
    {
-      map = new Map(weapons, treasures);
+      map = new Map(weapons, treasures, monsters);
       startRow = 0;
       startColumn = 0;
       startFloor = 0;

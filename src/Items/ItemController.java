@@ -87,7 +87,7 @@ public class ItemController {
         monsters.add(new Monster("Spelling Mistake"));
         monsters.add(new Monster("Wrong Operator"));
         monsters.add(new Monster("Magic Number"));
-        monsters.add(new Monster("Variable Type"));
+        monsters.add(new Monster("Wrong Variable Type"));
         monsters.add(new Monster("Missing Method"));
         monsters.add(new Monster("Failed Build"));
         monsters.add(new Monster("Bad Naming Convention"));

@@ -28,6 +28,7 @@ public class InputGetter implements Inputtable {
                         for(int i = 0; i < player.getWeapons().size(); i++){
                             Weapon weapon = (Weapon)player.getWeapons().get(i);
                             if(weapon.getMonster().getName().equals(player.getLocation().getMonsters().get(Commands.NORTH).getName())){
+
                                 valid = true;
                                 command = "NORTH";
                             }

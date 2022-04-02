@@ -29,7 +29,7 @@ public class GameController {
         // initialize map and player
         Outputtable outputtable = IOManager.getInstance().getOutputtable();
         Inputtable inputtable = IOManager.getInstance().getInputtable();
-        RoomController roomController = new RoomController(itemController.createWeapons(), itemController.createTreasures());
+        RoomController roomController = new RoomController(itemController.createWeapons(), itemController.createTreasures(), itemController.createMonster());
         map = roomController.getMap();
         roomController.setStartRoom(map.getMap()[0][0][0]);
         player = new Player(roomController.getMap().getMap()[roomController.getStartRow()][roomController.getStartColumn()][roomController.getStartFloor()],

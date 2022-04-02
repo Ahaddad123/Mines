@@ -27,7 +27,7 @@ public class Room {
     */
    Room(HashMap<Commands, Integer> directions, List<Item> items,
         HashMap<Commands, Monster> monsters, int row,
-        int column, String description)
+        int column, int floor, String description)
    {
       this.items = items;
       this.monsters = monsters;
@@ -35,6 +35,7 @@ public class Room {
       this.directions = directions;
       this.row = row;
       this.column = column;
+      this.floor = floor;
       this.floor = 0;
    }
 
