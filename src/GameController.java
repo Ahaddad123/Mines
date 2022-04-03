@@ -36,16 +36,16 @@ public class GameController {
                 roomController.getStartRow(), roomController.getStartColumn(), roomController.getStartFloor());
         quit = false;*/
 
-        Room[][][] map = new Room[5][5][3];
+        this.map = new Map(new Room[5][5][3]);
         for(int i = 0; i < 5; i++) {
             for(int j = 0; j < 5; j++) {
                 for(int k = 0; k < 3; k++) {
-                    map[i][j][k] = new Room(i, j, k);
+                    map.getMap()[i][j][k] = new Room(i, j, k);
                 }
             }
         }
-        MapRandomizer mapRandomizer = new MapRandomizer(map, 1);
-        player = new Player(map[0][0][0], 0,0,0);
+        MapRandomizer mapRandomizer = new MapRandomizer(map.getMap(), 0);
+        player = new Player(map.getMap()[0][0][0], 0,0,0);
         quit = false;
         mapRandomizer.shuffleRoomDescriptions(new ItemController().createRoomDescriptions());
         mapRandomizer.randomizeTreasurePlacements(new ItemController().createTreasures());

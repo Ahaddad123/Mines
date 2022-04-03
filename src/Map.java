@@ -34,6 +34,10 @@ public class Map {
       secondFloor();
    }
 
+   public Map(Room[][][] map) {
+      this.map = map;
+   }
+
    /**
     * gets game map
     * @return game map

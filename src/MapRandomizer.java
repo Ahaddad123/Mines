@@ -108,7 +108,6 @@ public class MapRandomizer {
             if(num == 10) {
                 map[rand.nextInt(MAX_WIDTH-1)][j][floor].getDirections().put(Commands.SOUTH, 1);
             }
-            System.out.println(num);
         }
         for(int i = 0; i < MAX_WIDTH - 1; i++) {
             int num = 0;
@@ -118,7 +117,6 @@ public class MapRandomizer {
             if(num == 10) {
                 map[i][rand.nextInt(MAX_WIDTH-1)][floor].getDirections().put(Commands.EAST, 1);
             }
-            System.out.println(num);
         }
     }
 

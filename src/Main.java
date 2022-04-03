@@ -7,8 +7,8 @@ import java.util.List;
  */
 public class Main {
     public static void main(String[] args) {
-        //GameController gameController = new GameController();
-        //gameController.run();
+        GameController gameController = new GameController();
+        gameController.run();
         Room[][][] map = new Room[5][5][3];
         for(int i = 0; i < 5; i++) {
             for(int j = 0; j < 5; j++) {
