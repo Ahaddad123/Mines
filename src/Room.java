@@ -103,4 +103,12 @@ public class Room {
    public int getFloor() {
       return floor;
    }
+
+   /**
+    * setter for room description
+    * @param description room description
+    */
+   public void setDescription(String description) {
+      this.description = description;
+   }
 }
