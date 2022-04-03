@@ -25,22 +25,21 @@ public class Main {
         directions.add(Commands.UP);
         directions.add(Commands.DOWN);
         //for(int x = 0; x < 10; x++) {
-            MapRandomizer mapRandomizer = new MapRandomizer(map, 1); //75438
+            MapRandomizer mapRandomizer = new MapRandomizer(map, 0); //75438
             //MapRandomizer mapRandomizer = new MapRandomizer(map, 75438);
-            for (int i = 0; i < 3; i++) {
+        for(int k = 0; k < 3; k++) {
+            for (int i = 0; i < 5; i++) {
                 for (int j = 0; j < 5; j++) {
-                    for(int k = 0; k < 5; k++) {
-                        Room room = map[j][k][i];
-                        System.out.print(room.getColumn() + " " + room.getRow() + " " + room.getFloor() + ":");
-                        for (Commands direction : directions) {
-                            if (room.getDirections().get(direction) == 1) {
-                                System.out.print(direction);
-                            }
+                    Room room = map[i][j][k];
+                    System.out.print(room.getColumn() + " " + room.getRow() + " " + room.getFloor() + ":");
+                    for (Commands direction : directions) {
+                        if (room.getDirections().get(direction) == 1) {
+                            System.out.print(direction);
                         }
-                        System.out.println();
                     }
+                    System.out.println();
                 }
             }
-        //}
+        }
     }
 }

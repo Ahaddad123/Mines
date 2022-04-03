@@ -4,15 +4,12 @@ import java.util.*;
 
 public class MapRandomizer {
     private final Room[][][] map;
-    private final Room entrance;
     private final Random rand;
     private final int MAX_WIDTH = 5;
-    private final int MAX_HEIGHT = 3;
 
     public MapRandomizer(Room[][][] map, int seed) {
         this.map = map;
         rand = new Random(seed);
-        this.entrance = map[0][0][0];
         setUpWalls();
     }
 
@@ -98,6 +95,30 @@ public class MapRandomizer {
                     }
                 }
             }
+        }
+        checkForInvalid(floor);
+    }
+
+    private void checkForInvalid(int floor) {
+        for(int j = 0; j < MAX_WIDTH - 1; j++) {
+            int num = 0;
+            for(int i = 0; i < MAX_WIDTH; i++) {
+                num += map[i][j][floor].getDirections().get(Commands.SOUTH);
+            }
+            if(num == 10) {
+                map[rand.nextInt(MAX_WIDTH-1)][j][floor].getDirections().put(Commands.SOUTH, 1);
+            }
+            System.out.println(num);
+        }
+        for(int i = 0; i < MAX_WIDTH - 1; i++) {
+            int num = 0;
+            for(int j = 0; j < MAX_WIDTH; j++) {
+                num += map[i][j][floor].getDirections().get(Commands.EAST);
+            }
+            if(num == 10) {
+                map[i][rand.nextInt(MAX_WIDTH-1)][floor].getDirections().put(Commands.EAST, 1);
+            }
+            System.out.println(num);
         }
     }
 
@@ -197,8 +218,13 @@ public class MapRandomizer {
     }
 
     public List<Commands> getOpenPaths(Room room) {
+        List<Commands> lateralDirections = new ArrayList<>();
+        lateralDirections.add(Commands.NORTH);
+        lateralDirections.add(Commands.SOUTH);
+        lateralDirections.add(Commands.EAST);
+        lateralDirections.add(Commands.WEST);
         List<Commands> list = new ArrayList<>();
-        for(Commands commands : room.getDirections().keySet()) {
+        for(Commands commands : lateralDirections) {
             if(room.getDirections().get(commands) == 1) {
                 list.add(commands);
             }

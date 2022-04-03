@@ -43,6 +43,7 @@ public class Room {
    Room(int i, int j, int k) {
       this.items = new ArrayList<>();
       this.directions = new HashMap<>();
+      this.monsters = new HashMap<>();
       this.row = i;
       this.column = j;
       this.floor = k;
