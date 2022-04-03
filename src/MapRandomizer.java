@@ -2,17 +2,30 @@ import Items.Treasure;
 
 import java.util.*;
 
+/**
+ * @author Makenna Halvensleben
+ * MapRandomizer holds the logic to randomize a map
+ */
 public class MapRandomizer {
     private final Room[][][] map;
     private final Random rand;
     private final int MAX_WIDTH = 5;
 
+    /**
+     * Constructor for MapRandomizer that creates the map
+     * @param map empty map
+     * @param seed random seed
+     */
     public MapRandomizer(Room[][][] map, int seed) {
         this.map = map;
         rand = new Random(seed);
         setUpWalls();
     }
 
+    /**
+     * Shuffles the list of room descriptions and assigns them to each room
+     * @param roomDescriptions list of room descriptions
+     */
     public void shuffleRoomDescriptions(ArrayList<String> roomDescriptions) {
         Collections.shuffle(roomDescriptions, rand);
         int i = 0;
@@ -26,13 +39,21 @@ public class MapRandomizer {
         }
     }
 
+    /**
+     * Randomizes the locations of the treasures
+     * @param treasures list of treasures
+     */
     public void randomizeTreasurePlacements(ArrayList<Treasure> treasures) {
         for (Treasure treasure : treasures) {
             getRandomRoom().getItems().add(treasure);
         }
     }
 
+    /**
+     * Sets up the passages for each room that are blocked by walls
+     */
     private void setUpWalls() {
+        // initializes all passages as blocked
         for(Room[][] floor : map) {
             for(Room[] row : floor) {
                 for(Room room : row) {
@@ -45,27 +66,44 @@ public class MapRandomizer {
                 }
             }
         }
+
+        // creates the stairs between the first and second floors
         int numStairs = rand.nextInt(2) + 1;
         for(int i = 0; i < numStairs; i++) {
             Room room = getRandomFirstFloorRoom();
             room.getDirections().put(Commands.UP, 1);
             getAdjacentRoom(room, Commands.UP).getDirections().put(Commands.DOWN, 1);
         }
+
+        // open passages on the first floor
         setupRoomStructure(0);
+
+        // creates the stairs between the second and third floors
         numStairs = rand.nextInt(2) + 1;
         for(int i = 0; i < numStairs; i++) {
             Room room = getRandomSecondFloorRoom();
             room.getDirections().put(Commands.UP, 1);
             getAdjacentRoom(room, Commands.UP).getDirections().put(Commands.DOWN, 1);
         }
+
+        // open passages on the second floor
         setupRoomStructure(1);
+
+        // open passages on the third floor
         setupRoomStructure(2);
     }
 
+    /**
+     * Opens passages for the given floor index
+     * @param floor floor index
+     */
     private void setupRoomStructure(int floor) {
         Room room = map[0][0][floor];
         List<Room> reached = new ArrayList<>();
         Commands direction;
+
+        // travels through all the rooms on the given floor
+        // opens at most 3 passages for each room
         while(!allRoomsReached(reached, floor)) {
             List<Commands> openPaths = getOpenPaths(room);
             direction = getRandomDirection(room);
@@ -80,6 +118,8 @@ public class MapRandomizer {
                 room = getToNewRoom(room, reached);
             }
         }
+
+        // adds additional walls to minimize the amount of free space in the floor
         for(int i = 0; i < MAX_WIDTH; i++) {
             for(int j = 0; j < MAX_WIDTH; j++) {
                 Room r = map[i][j][floor];
@@ -96,10 +136,17 @@ public class MapRandomizer {
                 }
             }
         }
+
+        // checks to see if any rooms are unreachable
         checkForInvalid(floor);
     }
 
+    /**
+     * Checks to see if any rooms on the given floor are unreachable
+     * @param floor floor index
+     */
     private void checkForInvalid(int floor) {
+        // checks for a horizontal wall across the entire floor
         for(int j = 0; j < MAX_WIDTH - 1; j++) {
             int num = 0;
             for(int i = 0; i < MAX_WIDTH; i++) {
@@ -109,6 +156,8 @@ public class MapRandomizer {
                 map[rand.nextInt(MAX_WIDTH-1)][j][floor].getDirections().put(Commands.SOUTH, 1);
             }
         }
+
+        // checks for a vertical wall across the entire floor
         for(int i = 0; i < MAX_WIDTH - 1; i++) {
             int num = 0;
             for(int j = 0; j < MAX_WIDTH; j++) {
@@ -120,6 +169,12 @@ public class MapRandomizer {
         }
     }
 
+    /**
+     * Returns a room that has not been reached yet when opening passages
+     * @param room current room
+     * @param reached list of rooms that have been reached
+     * @return a room the has not been reached or an adjacent room
+     */
     private Room getToNewRoom(Room room, List<Room> reached) {
         boolean isNew = false;
         List<Commands> openPaths = getOpenPaths(room);
@@ -137,6 +192,12 @@ public class MapRandomizer {
         return newRoom;
     }
 
+    /**
+     * Checks to see if all rooms of a given floor have been reached
+     * @param reached list of rooms that have been reached
+     * @param floor floor index
+     * @return if all the rooms have been reached
+     */
     private boolean allRoomsReached(List<Room> reached, int floor) {
         for(int i = 0; i < MAX_WIDTH; i++) {
             for(int j = 0; j < MAX_WIDTH; j++) {
@@ -149,18 +210,36 @@ public class MapRandomizer {
         return true;
     }
 
+    /**
+     * Gets a random room from the entire map
+     * @return a random room
+     */
     public Room getRandomRoom() {
         return map[rand.nextInt(5)][rand.nextInt(5)][rand.nextInt(3)];
     }
 
+    /**
+     * Gets a random room from the first floor
+     * @return a random room from the first floor
+     */
     public Room getRandomFirstFloorRoom() {
         return map[rand.nextInt(5)][rand.nextInt(5)][0];
     }
 
+    /**
+     * Gets a random room from the second floor
+     * @return a random room from the second floor
+     */
     public Room getRandomSecondFloorRoom() {
         return map[rand.nextInt(5)][rand.nextInt(5)][1];
     }
 
+    /**
+     * Gets the room adjacent to the current room in the given direction
+     * @param room current room
+     * @param command direction
+     * @return adjacent room
+     */
     public Room getAdjacentRoom(Room room, Commands command) {
         if (command == Commands.NORTH) {
             return map[room.getRow()][room.getColumn() - 1][room.getFloor()];
@@ -177,6 +256,11 @@ public class MapRandomizer {
         }
     }
 
+    /**
+     * Gets a random direction that is valid to the room
+     * @param room current room
+     * @return a random valid direction
+     */
     public Commands getRandomDirection(Room room) {
         List<Commands> validDirections = new ArrayList<>();
         if(room.getColumn() != 0) {
@@ -195,10 +279,20 @@ public class MapRandomizer {
         return validDirections.get(i);
     }
 
+    /**
+     * Returns if a room is at the edge of the map
+     * @param room current room
+     * @return if it is an edge room
+     */
     public boolean isEdge(Room room) {
         return room.getColumn() == 0 || room.getColumn() == 4 || room.getRow() == 0 || room.getRow() == 4;
     }
 
+    /**
+     * Returns the opposite direction of the given direction
+     * @param command given direction
+     * @return opposite direction
+     */
     public Commands getOppositeDirection(Commands command) {
         if (command == Commands.NORTH) {
             return Commands.SOUTH;
@@ -215,6 +309,11 @@ public class MapRandomizer {
         }
     }
 
+    /**
+     * Gets a list of open passages for a given room
+     * @param room current room
+     * @return list of open passages
+     */
     public List<Commands> getOpenPaths(Room room) {
         List<Commands> lateralDirections = new ArrayList<>();
         lateralDirections.add(Commands.NORTH);
