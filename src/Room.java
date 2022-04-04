@@ -23,15 +23,14 @@ public class Room {
     * @param monsters monsters blocking room exits
     * @param row row of map array
     * @param column column of map array
-    * @param description description of the room
     */
    Room(HashMap<Commands, Boolean> directions, List<Item> items,
         HashMap<Commands, Monster> monsters, int row,
-        int column, int floor, String description)
+        int column, int floor)
    {
       this.items = items;
       this.monsters = monsters;
-      this.description = description;
+      this.description = "";
       this.directions = directions;
       this.row = row;
       this.column = column;
@@ -69,6 +68,13 @@ public class Room {
     */
    public String getDescription() {
       return description;
+   }
+
+   /**
+    * setter for room description
+    */
+   public void setDescription(String description) {
+      this.description = description;
    }
 
    /**
