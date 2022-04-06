@@ -269,11 +269,11 @@ public class Map {
      */
     private void secondFloorForthRow()
     {
-        createRoom(monsters.get(15), Commands.SOUTH, null,
+        createRoom(null, null, null,
                 null, null, 0, 3, 1);
 
-        createRoom(monsters.get(11), Commands.NORTH, null,
-                null, null, 1, 3, 1);
+        createRoom(monsters.get(11), Commands.NORTH, monsters.get(15), Commands.SOUTH,
+                null, 1, 3, 1);
 
         createRoom(null, null, null, null,
                 null, 2, 3, 1);
@@ -291,11 +291,11 @@ public class Map {
      */
     private void secondFloorFifthRow()
     {
-        createRoom(monsters.get(15), Commands.NORTH,
+        createRoom(null, null,
                 null, null, weapons.get(6), 0, 4, 1);
 
         createRoom(monsters.get(12), Commands.EAST,
-                null, null, null, 1, 4, 1);
+                monsters.get(15), Commands.NORTH, null, 1, 4, 1);
 
         createRoom(monsters.get(12), Commands.WEST,
                 null, null, null, 2, 4, 1);
