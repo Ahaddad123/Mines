@@ -2,6 +2,8 @@ import Items.Treasure;
 
 import java.util.*;
 
+import static java.lang.Math.abs;
+
 /**
  * @author Makenna Halvensleben
  * MapRandomizer holds the logic to randomize a map
@@ -18,7 +20,7 @@ public class MapRandomizer {
      */
     public MapRandomizer(Room[][][] map, int seed) {
         this.map = map;
-        rand = new Random(seed%10);
+        rand = new Random(abs(seed%10));
         setUpWalls();
     }
 

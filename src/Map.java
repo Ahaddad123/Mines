@@ -220,7 +220,7 @@ public class Map {
                 null, 3, 0, 1);
 
         createRoom(null, null, null, null,
-                weapons.get(8), 4, 0, 1);
+                weapons.get(15), 4, 0, 1);
     }
 
     /**
@@ -258,7 +258,7 @@ public class Map {
                 null, 2, 2, 1);
 
         createRoom(null, null, null, null,
-                weapons.get(15), 3, 2, 1);
+                weapons.get(8), 3, 2, 1);
 
         createRoom(monsters.get(9), Commands.NORTH, null,
                 null, weapons.get(16),4, 2, 1);

@@ -25,7 +25,7 @@ public class Main {
         directions.add(Commands.UP);
         directions.add(Commands.DOWN);
         //for(int x = 0; x < 10; x++) {
-            MapRandomizer mapRandomizer = new MapRandomizer(map, 0); //75438
+            MapRandomizer mapRandomizer = new MapRandomizer(map, 9); //75438
             //MapRandomizer mapRandomizer = new MapRandomizer(map, 75438);
         for(int k = 0; k < 3; k++) {
             for (int i = 0; i < 5; i++) {
