@@ -4,6 +4,10 @@ public class Item {
     //variables
     String name;
 
+    public Item(String name) {
+        this.name = name;
+    }
+
     /**
      *
      * @return
