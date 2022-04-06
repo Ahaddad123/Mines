@@ -234,7 +234,7 @@ public class Map {
                 weapons.get(23), 1, 1, 1);
 
         createRoom(monsters.get(10), Commands.EAST, null, null,
-                null, 2, 1, 1);
+                weapons.get(9), 2, 1, 1);
 
         createRoom(monsters.get(10), Commands.WEST, null, null,
                 null, 3, 1, 1);
@@ -249,7 +249,7 @@ public class Map {
     private void secondFloorThirdRow()
     {
         createRoom(null, null, null, null,
-                weapons.get(9), 0, 2, 1);
+                null, 0, 2, 1);
 
         createRoom(monsters.get(11), Commands.SOUTH, null,
                 null, null, 1, 2, 1);
