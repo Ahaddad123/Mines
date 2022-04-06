@@ -20,7 +20,7 @@ public class MapRandomizer {
      */
     public MapRandomizer(Room[][][] map, int seed) {
         this.map = map;
-        rand = new Random(abs(seed%10));
+        rand = new Random(abs(seed%9));
         setUpWalls();
     }
 
