@@ -19,19 +19,20 @@ public class Room {
 
    /**
     * Constructor to set up a room
+    * @param directions open exits
     * @param items items in the room
     * @param monsters monsters blocking room exits
     * @param row row of map array
     * @param column column of map array
-    * @param description description of the room
     */
-   Room(List<Item> items,
+   Room(HashMap<Commands, Integer> directions, List<Item> items,
         HashMap<Commands, Monster> monsters, int row,
-        int column, int floor, String description)
+        int column, int floor)
    {
       this.items = items;
       this.monsters = monsters;
-      this.description = description;
+      this.description = "";
+      this.directions = directions;
       this.row = row;
       this.column = column;
       this.floor = floor;
@@ -80,6 +81,13 @@ public class Room {
    }
 
    /**
+    * setter for room description
+    */
+   public void setDescription(String description) {
+      this.description = description;
+   }
+
+   /**
     * getter for row
     * @return row number of room
     */
@@ -101,13 +109,5 @@ public class Room {
     */
    public int getFloor() {
       return floor;
-   }
-
-   /**
-    * setter for room description
-    * @param description room description
-    */
-   public void setDescription(String description) {
-      this.description = description;
    }
 }
