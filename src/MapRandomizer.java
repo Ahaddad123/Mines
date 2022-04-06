@@ -18,7 +18,7 @@ public class MapRandomizer {
      */
     public MapRandomizer(Room[][][] map, int seed) {
         this.map = map;
-        rand = new Random(seed);
+        rand = new Random(seed%10);
         setUpWalls();
     }
 
@@ -127,7 +127,7 @@ public class MapRandomizer {
                     boolean added = false;
                     for(int x = 0; x < getOpenPaths(r).size() && !added; x++) {
                         Commands dir = getOpenPaths(r).get(x);
-                        if(getOpenPaths(getAdjacentRoom(r, dir)).size() > 2) {
+                        if(getOpenPaths(getAdjacentRoom(r, dir)).size() > 2 && !isEdge(getAdjacentRoom(r, dir))) {
                             r.getDirections().put(dir, 2);
                             getAdjacentRoom(r,dir).getDirections().put(getOppositeDirection(dir), 2);
                             added = true;
@@ -153,7 +153,9 @@ public class MapRandomizer {
                 num += map[i][j][floor].getDirections().get(Commands.SOUTH);
             }
             if(num == 10) {
-                map[rand.nextInt(MAX_WIDTH-1)][j][floor].getDirections().put(Commands.SOUTH, 1);
+                Room room = map[rand.nextInt(MAX_WIDTH-1)][j][floor];
+                room.getDirections().put(Commands.SOUTH, 1);
+                getAdjacentRoom(room, Commands.SOUTH).getDirections().put(Commands.NORTH, 1);
             }
         }
 
@@ -164,7 +166,9 @@ public class MapRandomizer {
                 num += map[i][j][floor].getDirections().get(Commands.EAST);
             }
             if(num == 10) {
-                map[i][rand.nextInt(MAX_WIDTH-1)][floor].getDirections().put(Commands.EAST, 1);
+                Room room = map[i][rand.nextInt(MAX_WIDTH-1)][floor];
+                room.getDirections().put(Commands.EAST, 1);
+                getAdjacentRoom(room, Commands.EAST).getDirections().put(Commands.WEST, 1);
             }
         }
     }
