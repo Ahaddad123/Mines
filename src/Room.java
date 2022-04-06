@@ -19,21 +19,19 @@ public class Room {
 
    /**
     * Constructor to set up a room
-    * @param directions open exits
     * @param items items in the room
     * @param monsters monsters blocking room exits
     * @param row row of map array
     * @param column column of map array
     * @param description description of the room
     */
-   Room(HashMap<Commands, Integer> directions, List<Item> items,
+   Room(List<Item> items,
         HashMap<Commands, Monster> monsters, int row,
         int column, int floor, String description)
    {
       this.items = items;
       this.monsters = monsters;
       this.description = description;
-      this.directions = directions;
       this.row = row;
       this.column = column;
       this.floor = floor;
