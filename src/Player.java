@@ -21,6 +21,7 @@ public class Player {
     private final int MAX_WIDTH = 5;
     private final int MAX_HEIGHT = 5;
     private final int NUMBER_OF_TREASURES = 24;
+    private List<Room> roomsVisited;
 
     /**
      * Constructor for Player that initializes instance variables
@@ -33,6 +34,8 @@ public class Player {
         this.zIndex = zIndex;
         this.moveCount = 0;
         inventory = new ArrayList<>();
+        roomsVisited = new ArrayList<>();
+        roomsVisited.add(entrance);
     }
 
     /**
@@ -180,6 +183,9 @@ public class Player {
         }
         //TODO: change to 3D array
         this.location = map.getMap()[this.xIndex][this.yIndex][this.zIndex];
+        if(!roomsVisited.contains(this.location)) {
+            roomsVisited.add(this.location);
+        }
         this.moveCount++;
     }
 
@@ -188,7 +194,7 @@ public class Player {
     }
 
     public int getRoomsVisited() {
-        return 0;
+        return roomsVisited.size();
     }
 
     public int getNumTreasures() {

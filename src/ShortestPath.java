@@ -1,4 +1,14 @@
-class ShortestPath {
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ * source: https://www.geeksforgeeks.org/dijkstras-shortest-path-algorithm-greedy-algo-7/
+ */
+public class ShortestPath {
+
+    private final int MAX_WIDTH = 5;
+    private final int MAX_HEIGHT = 3;
+
     // A utility function to find the vertex with minimum distance value,
     // from the set of vertices not yet included in shortest path tree
     static final int V = 9;
@@ -71,10 +81,10 @@ class ShortestPath {
     }
 
     // Driver method
-    public static void main(String[] args)
+    public List<String> findWayOut(Map map)
     {
         /* Let us create the example graph discussed above */
-        int[][] graph = new int[][] { { 0, 4, 0, 0, 0, 0, 0, 8, 0 },
+        int[][] graph2 = new int[][] { { 0, 4, 0, 0, 0, 0, 0, 8, 0 },
                 { 4, 0, 8, 0, 0, 0, 0, 11, 0 },
                 { 0, 8, 0, 7, 0, 4, 0, 0, 2 },
                 { 0, 0, 7, 0, 9, 14, 0, 0, 0 },
@@ -83,8 +93,22 @@ class ShortestPath {
                 { 0, 0, 0, 0, 0, 2, 0, 1, 6 },
                 { 8, 11, 0, 0, 0, 0, 1, 0, 7 },
                 { 0, 0, 2, 0, 0, 0, 6, 7, 0 } };
+
+        int numberOfRooms = MAX_HEIGHT * MAX_WIDTH * MAX_WIDTH;
+        int[][] graph = new int[numberOfRooms][numberOfRooms];
+
+        for(int k = 0; k < MAX_HEIGHT; k++) {
+            for(int i = 0; i < MAX_WIDTH; i++) {
+                for(int j = 0; j < MAX_WIDTH; j++) {
+                    Room room = map.getMap()[i][j][k];
+                }
+            }
+        }
+
         ShortestPath t = new ShortestPath();
         t.dijkstra(graph, 0);
+
+        return new ArrayList<>();
     }
 }
 // This code is contributed by Aakash Hasija

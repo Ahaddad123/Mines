@@ -15,6 +15,7 @@ public class GameController {
     private Map map;
     private boolean quit;
     private Room entrance;
+    private final ShortestPath shortestPath = new ShortestPath();
 
     /**
      * Constructor for the GameController
@@ -119,18 +120,18 @@ public class GameController {
             leaveTreasures();
         } else if (command == Commands.OUT) {
             //TODO: implement out functionality
-            /*
             if (player.getTreasures().size() > 0) {
                 boolean stoleTreasure = false;
                 int i = 0;
                 while(!stoleTreasure) {
                     if (player.getInventory().get(i) instanceof Treasure) {
                         player.getInventory().remove(i);
-                        stoleTreasure = 0;
+                        stoleTreasure = true;
                     }
                     i++;
                 }
-            }*/
+            }
+            shortestPath.findWayOut(map);
         } else if (command == Commands.POINTS) {
             outputtable.outputPoints(player, entrance);
         } else if (command == Commands.HELP) {
