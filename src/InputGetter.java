@@ -123,14 +123,54 @@ public class InputGetter implements Inputtable {
                 }
                 break;
             case "u":
-                // Not used yet
-                valid = false;
-                command = "UP";
+                if(!player.getLocation().getDirections().get(Commands.UP)){
+                    if(player.getLocation().getMonsters().containsKey(Commands.UP)){
+                        for(int i = 0; i < player.getWeapons().size(); i++){
+                            Weapon weapon = (Weapon)player.getWeapons().get(i);
+                            if(weapon.getMonster().getName().equals(player.getLocation().getMonsters().get(Commands.UP).getName())){
+                                valid = true;
+                                command = "UP";
+                            }
+                        }
+                        if (!valid) {
+                            System.out.println("Passageway is blocked.");
+                            command = "INVALID";
+                        }
+                    }
+                    else{
+                        System.out.println("You can't go that way.");
+                        command = "INVALID";
+                        valid = false;
+                    }
+                } else {
+                    valid = true;
+                    command = "UP";
+                }
                 break;
             case "d":
-                // Not used yet
-                valid = false;
-                command = "DOWN";
+                if(!player.getLocation().getDirections().get(Commands.DOWN)){
+                    if(player.getLocation().getMonsters().containsKey(Commands.DOWN)){
+                        for(int i = 0; i < player.getWeapons().size(); i++){
+                            Weapon weapon = (Weapon)player.getWeapons().get(i);
+                            if(weapon.getMonster().getName().equals(player.getLocation().getMonsters().get(Commands.DOWN).getName())){
+                                valid = true;
+                                command = "DOWN";
+                            }
+                        }
+                        if (!valid) {
+                            System.out.println("Passageway is blocked.");
+                            command = "INVALID";
+                        }
+                    }
+                    else{
+                        System.out.println("You can't go that way.");
+                        command = "INVALID";
+                        valid = false;
+                    }
+                } else {
+                    valid = true;
+                    command = "DOWN";
+                }
                 break;
             case "h":
                 valid = true;
