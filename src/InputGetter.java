@@ -207,4 +207,15 @@ public class InputGetter implements Inputtable {
         else
             return Commands.INVALID;
     }
+
+    public int inputRandomSeed(){
+        Scanner scan = new Scanner(System.in);
+        System.out.print("Enter a number for the random seed: ");
+
+        int randomSeed = scan.nextInt();
+
+        scan.close();
+
+        return randomSeed;
+    }
 }
