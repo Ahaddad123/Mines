@@ -3,8 +3,6 @@ import Items.ItemController;
 import Items.Treasure;
 import Items.Weapon;
 
-import java.util.Random;
-
 /**
  * @author Makenna Halvensleben
  * GameController holds the logic to run the game by handling user Commands.
@@ -16,6 +14,7 @@ public class GameController {
     private Player player;
     private Map map;
     private boolean quit;
+    private Room entrance;
 
     /**
      * Constructor for the GameController
@@ -33,7 +32,8 @@ public class GameController {
         Inputtable inputtable = IOManager.getInstance().getInputtable();
         RoomController roomController = new RoomController(itemController.createWeapons(), itemController.createTreasures(), itemController.createMonster());
         map = roomController.getMap();
-        roomController.setStartRoom(map.getMap()[0][0][0]);
+        entrance = map.getMap()[0][0][0];
+        roomController.setStartRoom(entrance);
         player = new Player(roomController.getMap().getMap()[roomController.getStartRow()][roomController.getStartColumn()][roomController.getStartFloor()],
                 roomController.getStartRow(), roomController.getStartColumn(), roomController.getStartFloor());
         quit = false;
@@ -132,7 +132,7 @@ public class GameController {
                 }
             }*/
         } else if (command == Commands.POINTS) {
-            outputtable.outputPoints(player, player.getMoveCount());
+            outputtable.outputPoints(player, entrance);
         } else if (command == Commands.HELP) {
             outputtable.outputHelp();
         } else if (command == Commands.QUIT) {

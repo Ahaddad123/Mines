@@ -1,5 +1,4 @@
-import java.util.List;
- /**
+/**
   * Outputtable is an interface for OutputGetter
   * */
 public interface Outputtable {
@@ -10,5 +9,5 @@ public interface Outputtable {
 
     public void outputRoomDescription(Room room);
 
-    public void outputPoints(Player player, int movementNumber);
+    public void outputPoints(Player player, Room entrance);
 }

@@ -18,6 +18,9 @@ public class Player {
     private int yIndex;
     private int zIndex;
     private int moveCount;
+    private final int MAX_WIDTH = 5;
+    private final int MAX_HEIGHT = 5;
+    private final int NUMBER_OF_TREASURES = 24;
 
     /**
      * Constructor for Player that initializes instance variables
@@ -178,5 +181,21 @@ public class Player {
         //TODO: change to 3D array
         this.location = map.getMap()[this.xIndex][this.yIndex][this.zIndex];
         this.moveCount++;
+    }
+
+    public int getNumberRooms() {
+        return MAX_HEIGHT * MAX_WIDTH * MAX_WIDTH;
+    }
+
+    public int getRoomsVisited() {
+        return 0;
+    }
+
+    public int getNumTreasures() {
+        return NUMBER_OF_TREASURES;
+    }
+
+    public int getTreasuresCarry() {
+        return getTreasures().size();
     }
 }
