@@ -3,6 +3,7 @@
  * Inputtable is an interface for InputGetter
  * */
 public interface Inputtable {
-    Commands inputCommand(Player player);
-    int inputRandomSeed();
+    public Commands inputCommand(Player player);
+
+    public int inputRandomSeed();
 }

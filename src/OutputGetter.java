@@ -104,5 +104,7 @@ public class OutputGetter implements Outputtable{
 
     public void outputOut(){}
 
-    public void outputQuit(){}
+    public void outputQuitMessage(Player player, int moveCount){
+
+    }
 }
