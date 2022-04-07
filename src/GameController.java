@@ -39,7 +39,7 @@ public class GameController {
         quit = false;
         //MapRandomizer mapRandomizer = new MapRandomizer(map.getMap(), inputtable.inputRandomSeed());
         int seed = new Random().nextInt(9);
-
+        System.out.println(seed);
         MapRandomizer mapRandomizer = new MapRandomizer(map.getMap(), seed);
         mapRandomizer.shuffleRoomDescriptions(new ItemController().createRoomDescriptions());
         mapRandomizer.randomizeTreasurePlacements(new ItemController().createTreasures());
