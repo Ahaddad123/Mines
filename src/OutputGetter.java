@@ -65,10 +65,14 @@ public class OutputGetter implements Outputtable{
      * @param player this gives the player information
      * @param movementNumber this gives the number of moves the player has made
      * */
-    public void outputPoints(Player player, int movementNumber){}
+    public void outputPoints(Player player, int movementNumber){
+
+    }
 
     public void outputOut(){}
 
-    public void outputQuit(){}
+    public void outputQuitMessage(Player player, int moveCount){
+
+    }
 
 }

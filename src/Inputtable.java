@@ -5,4 +5,5 @@
 public interface Inputtable {
     public Commands inputCommand(Player player);
 
+    public int inputRandomSeed();
 }
