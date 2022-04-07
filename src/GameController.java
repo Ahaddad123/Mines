@@ -37,10 +37,10 @@ public class GameController {
         player = new Player(roomController.getMap().getMap()[roomController.getStartRow()][roomController.getStartColumn()][roomController.getStartFloor()],
                 roomController.getStartRow(), roomController.getStartColumn(), roomController.getStartFloor());
         quit = false;
-        //MapRandomizer mapRandomizer = new MapRandomizer(map.getMap(), inputtable.inputRandomSeed());
-        int seed = new Random().nextInt(9);
-        System.out.println(seed);
-        MapRandomizer mapRandomizer = new MapRandomizer(map.getMap(), seed);
+        MapRandomizer mapRandomizer = new MapRandomizer(map.getMap(), inputtable.inputRandomSeed());
+        //int seed = new Random().nextInt(9);
+        //System.out.println(seed);
+        //MapRandomizer mapRandomizer = new MapRandomizer(map.getMap(), seed);
         mapRandomizer.shuffleRoomDescriptions(new ItemController().createRoomDescriptions());
         mapRandomizer.randomizeTreasurePlacements(new ItemController().createTreasures());
         // game loop
@@ -60,7 +60,7 @@ public class GameController {
         Room location = player.getLocation();
         Room adjacentRoom;
         if (command == Commands.NORTH) {
-            if (location.getDirections().get(Commands.NORTH) == 2) {
+            if (location.getDirections().get(Commands.NORTH) == 100) {
                 removeWeapon(Commands.NORTH);
                 location.getMonsters().remove(Commands.NORTH);
                 location.getDirections().put(Commands.NORTH, 1);
@@ -69,7 +69,7 @@ public class GameController {
                 adjacentRoom.getDirections().put(Commands.SOUTH, 1);
             }
         } else if (command == Commands.SOUTH) {
-            if (location.getDirections().get(Commands.SOUTH) == 2) {
+            if (location.getDirections().get(Commands.SOUTH) == 100) {
                 removeWeapon(Commands.SOUTH);
                 location.getMonsters().remove(Commands.SOUTH);
                 location.getDirections().put(Commands.SOUTH, 1);
@@ -78,7 +78,7 @@ public class GameController {
                 adjacentRoom.getDirections().put(Commands.NORTH, 1);
             }
         } else if (command == Commands.EAST) {
-            if (location.getDirections().get(Commands.EAST) == 2) {
+            if (location.getDirections().get(Commands.EAST) == 100) {
                 removeWeapon(Commands.EAST);
                 location.getMonsters().remove(Commands.EAST);
                 location.getDirections().put(Commands.EAST, 1);
@@ -87,7 +87,7 @@ public class GameController {
                 adjacentRoom.getDirections().put(Commands.WEST, 1);
             }
         } else if (command == Commands.WEST) {
-            if (location.getDirections().get(Commands.WEST) == 2) {
+            if (location.getDirections().get(Commands.WEST) == 100) {
                 removeWeapon(Commands.WEST);
                 location.getMonsters().remove(Commands.WEST);
                 location.getDirections().put(Commands.WEST, 1);

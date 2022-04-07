@@ -60,12 +60,12 @@ public class MapRandomizer {
         for(Room[][] floor : map) {
             for(Room[] row : floor) {
                 for(Room room : row) {
-                    room.getDirections().put(Commands.UP, 2);
-                    room.getDirections().put(Commands.DOWN, 2);
-                    room.getDirections().put(Commands.NORTH, 2);
-                    room.getDirections().put(Commands.SOUTH, 2);
-                    room.getDirections().put(Commands.EAST, 2);
-                    room.getDirections().put(Commands.WEST, 2);
+                    room.getDirections().put(Commands.UP, 100);
+                    room.getDirections().put(Commands.DOWN, 100);
+                    room.getDirections().put(Commands.NORTH, 100);
+                    room.getDirections().put(Commands.SOUTH, 100);
+                    room.getDirections().put(Commands.EAST, 100);
+                    room.getDirections().put(Commands.WEST, 100);
                 }
             }
         }
@@ -131,8 +131,8 @@ public class MapRandomizer {
                     for(int x = 0; x < getOpenPaths(r).size() && !added; x++) {
                         Commands dir = getOpenPaths(r).get(x);
                         if(getOpenPaths(getAdjacentRoom(r, dir)).size() > 2 && !isEdge(getAdjacentRoom(r, dir))) {
-                            r.getDirections().put(dir, 2);
-                            getAdjacentRoom(r,dir).getDirections().put(getOppositeDirection(dir), 2);
+                            r.getDirections().put(dir, 100);
+                            getAdjacentRoom(r,dir).getDirections().put(getOppositeDirection(dir), 100);
                             added = true;
                         }
                     }
@@ -341,7 +341,7 @@ public class MapRandomizer {
             for(Room[] row : floor) {
                 for(Room room : row) {
                     for(Commands blocked : room.getMonsters().keySet()) {
-                        room.getDirections().put(blocked, 2);
+                        room.getDirections().put(blocked, 100);
                     }
                 }
             }
