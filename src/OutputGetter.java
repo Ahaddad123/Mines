@@ -97,9 +97,17 @@ public class OutputGetter implements Outputtable{
                 points = 0;
             }
         }
-        
-        System.out.println("Points: " + points);
-        System.out.println("\n");
+
+        System.out.println("Points: " + points + "\n");
+    }
+
+    /**
+     * Outputs a confirmation that the user is about to quit the game.
+     */
+    public void outputQuit(){
+        System.out.println("Are you sure you want to quit?\n");
+        System.out.println("Y to confirm, N to continue playing.\n");
+
     }
 
     public void outputOut(){}
