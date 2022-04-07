@@ -87,7 +87,7 @@ public class OutputGetter implements Outputtable{
                 points = 0;
             }
         }
-        
+
         System.out.println("Points: " + points);
         System.out.println("\n");
     }
