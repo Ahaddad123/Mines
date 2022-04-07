@@ -9,7 +9,7 @@ import static java.lang.Math.abs;
  * MapRandomizer holds the logic to randomize a map
  */
 public class MapRandomizer {
-    private final Room[][][] map;
+    private Room[][][] map;
     private final Random rand;
     private final int MAX_WIDTH = 5;
 
@@ -22,6 +22,7 @@ public class MapRandomizer {
         this.map = map;
         rand = new Random(abs(seed%9));
         setUpWalls();
+        addMonsters();
     }
 
     /**
@@ -333,5 +334,17 @@ public class MapRandomizer {
             }
         }
         return list;
+    }
+
+    private void addMonsters() {
+        for(Room[][] floor : map) {
+            for(Room[] row : floor) {
+                for(Room room : row) {
+                    for(Commands blocked : room.getMonsters().keySet()) {
+                        room.getDirections().put(blocked, 2);
+                    }
+                }
+            }
+        }
     }
 }

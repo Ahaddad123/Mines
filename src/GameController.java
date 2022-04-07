@@ -3,6 +3,8 @@ import Items.ItemController;
 import Items.Treasure;
 import Items.Weapon;
 
+import java.util.Random;
+
 /**
  * @author Makenna Halvensleben
  * GameController holds the logic to run the game by handling user Commands.
@@ -29,27 +31,18 @@ public class GameController {
         // initialize map and player
         Outputtable outputtable = IOManager.getInstance().getOutputtable();
         Inputtable inputtable = IOManager.getInstance().getInputtable();
-        /*RoomController roomController = new RoomController(itemController.createWeapons(), itemController.createTreasures(), itemController.createMonster());
+        RoomController roomController = new RoomController(itemController.createWeapons(), itemController.createTreasures(), itemController.createMonster());
         map = roomController.getMap();
         roomController.setStartRoom(map.getMap()[0][0][0]);
         player = new Player(roomController.getMap().getMap()[roomController.getStartRow()][roomController.getStartColumn()][roomController.getStartFloor()],
                 roomController.getStartRow(), roomController.getStartColumn(), roomController.getStartFloor());
-        quit = false;*/
-
-        this.map = new Map(new Room[5][5][3]);
-        for(int i = 0; i < 5; i++) {
-            for(int j = 0; j < 5; j++) {
-                for(int k = 0; k < 3; k++) {
-                    map.getMap()[i][j][k] = new Room(i, j, k);
-                }
-            }
-        }
-        MapRandomizer mapRandomizer = new MapRandomizer(map.getMap(), 0);
-        player = new Player(map.getMap()[0][0][0], 0,0,0);
         quit = false;
+        //MapRandomizer mapRandomizer = new MapRandomizer(map.getMap(), inputtable.inputRandomSeed());
+        int seed = new Random().nextInt(9);
+
+        MapRandomizer mapRandomizer = new MapRandomizer(map.getMap(), seed);
         mapRandomizer.shuffleRoomDescriptions(new ItemController().createRoomDescriptions());
         mapRandomizer.randomizeTreasurePlacements(new ItemController().createTreasures());
-
         // game loop
         do {
             outputtable.outputRoomDescription(player.getLocation());
@@ -70,37 +63,37 @@ public class GameController {
             if (location.getDirections().get(Commands.NORTH) == 2) {
                 removeWeapon(Commands.NORTH);
                 location.getMonsters().remove(Commands.NORTH);
-                location.getDirections().put(Commands.NORTH, 0);
+                location.getDirections().put(Commands.NORTH, 1);
                 adjacentRoom = map.getMap()[player.getXIndex()][player.getYIndex() - 1][player.getZIndex()];
                 adjacentRoom.getMonsters().remove(Commands.SOUTH);
-                adjacentRoom.getDirections().put(Commands.SOUTH, 0);
+                adjacentRoom.getDirections().put(Commands.SOUTH, 1);
             }
         } else if (command == Commands.SOUTH) {
             if (location.getDirections().get(Commands.SOUTH) == 2) {
                 removeWeapon(Commands.SOUTH);
                 location.getMonsters().remove(Commands.SOUTH);
-                location.getDirections().put(Commands.SOUTH, 0);
+                location.getDirections().put(Commands.SOUTH, 1);
                 adjacentRoom = map.getMap()[player.getXIndex()][player.getYIndex() + 1][player.getZIndex()];
                 adjacentRoom.getMonsters().remove(Commands.NORTH);
-                adjacentRoom.getDirections().put(Commands.NORTH, 0);
+                adjacentRoom.getDirections().put(Commands.NORTH, 1);
             }
         } else if (command == Commands.EAST) {
             if (location.getDirections().get(Commands.EAST) == 2) {
                 removeWeapon(Commands.EAST);
                 location.getMonsters().remove(Commands.EAST);
-                location.getDirections().put(Commands.EAST, 0);
+                location.getDirections().put(Commands.EAST, 1);
                 adjacentRoom = map.getMap()[player.getXIndex() + 1][player.getYIndex()][player.getZIndex()];
                 adjacentRoom.getMonsters().remove(Commands.WEST);
-                adjacentRoom.getDirections().put(Commands.WEST, 0);
+                adjacentRoom.getDirections().put(Commands.WEST, 1);
             }
         } else if (command == Commands.WEST) {
             if (location.getDirections().get(Commands.WEST) == 2) {
                 removeWeapon(Commands.WEST);
                 location.getMonsters().remove(Commands.WEST);
-                location.getDirections().put(Commands.WEST, 0);
+                location.getDirections().put(Commands.WEST, 1);
                 adjacentRoom = map.getMap()[player.getXIndex() - 1][player.getYIndex()][player.getZIndex()];
                 adjacentRoom.getMonsters().remove(Commands.EAST);
-                adjacentRoom.getDirections().put(Commands.EAST, 0);
+                adjacentRoom.getDirections().put(Commands.EAST, 1);
             }
         }
     }

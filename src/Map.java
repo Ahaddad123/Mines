@@ -32,10 +32,7 @@ public class Map {
         map = new Room[MAX_WIDTH][MAX_WIDTH][MAX_HEIGHT];
         firstFloor();
         secondFloor();
-    }
-
-    public Map(Room[][][] map) {
-        this.map = map;
+        thirdFloor();
     }
 
     /**
@@ -86,7 +83,7 @@ public class Map {
     }
 
     /**
-     * builds first floor of the game map
+     * builds second floor of the game map
      */
     private void secondFloor()
     {
@@ -95,6 +92,18 @@ public class Map {
         secondFloorThirdRow();
         secondFloorForthRow();
         secondFloorFifthRow();
+    }
+
+    /**
+     * builds third floor of the game map
+     */
+    private void thirdFloor()
+    {
+        thirdFloorFirstRow();
+        thirdFloorSecondRow();
+        thirdFloorThirdRow();
+        thirdFloorForthRow();
+        thirdFloorFifthRow();
     }
 
     /**
@@ -313,19 +322,19 @@ public class Map {
     private void thirdFloorFirstRow()
     {
         createRoom(null, null, null, null,
-                weapons.get(18), 0, 1, 2);
+                weapons.get(18), 0, 0, 2);
 
         createRoom(monsters.get(20), Commands.SOUTH,
-                null, null, null, 1, 1, 2);
+                null, null, null, 1, 0, 2);
 
         createRoom(null, null, null, null,
-                null, 2, 1, 2);
+                null, 2, 0, 2);
 
         createRoom(monsters.get(17), Commands.SOUTH, null,
-                null, null, 3, 1, 2);
+                null, null, 3, 0, 2);
 
         createRoom(null, null, null, null,
-                null, 4, 1, 2);
+                null, 4, 0, 2);
     }
 
     /**
@@ -334,19 +343,19 @@ public class Map {
     private void thirdFloorSecondRow()
     {
         createRoom(monsters.get(21), Commands.EAST,
-                null, null, null, 0, 2, 2);
+                null, null, null, 0, 1, 2);
 
         createRoom(monsters.get(20), Commands.NORTH,
-                monsters.get(21), Commands.WEST, null, 1, 2, 2);
+                monsters.get(21), Commands.WEST, null, 1, 1, 2);
 
         createRoom(null, null,
-                null, null, weapons.get(22),2, 2, 2);
+                null, null, weapons.get(22),2, 1, 2);
 
         createRoom(monsters.get(17), Commands.NORTH, null,
-                null, null, 3, 2, 2);
+                null, null, 3, 1, 2);
 
         createRoom(monsters.get(23), Commands.SOUTH,
-                null, null, null, 4, 2, 2);
+                null, null, null, 4, 1, 2);
     }
 
     /**
@@ -355,19 +364,19 @@ public class Map {
     private void thirdFloorThirdRow()
     {
         createRoom(null, null, null, null,
-                null, 0, 3, 2);
+                null, 0, 2, 2);
 
         createRoom(null, null,
-                null, null, weapons.get(11), 1, 3, 2);
+                null, null, weapons.get(11), 1, 2, 2);
 
         createRoom(null, null, null, null,
-                null, 2, 3, 2);
+                null, 2, 2, 2);
 
         createRoom(null, null, null,
-                null, null, 3, 3, 2);
+                null, null, 3, 2, 2);
 
         createRoom(monsters.get(23), Commands.NORTH, monsters.get(22),
-                Commands.SOUTH, weapons.get(19),4, 3, 2);
+                Commands.SOUTH, weapons.get(19),4, 2, 2);
     }
 
     /**
