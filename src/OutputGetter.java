@@ -63,9 +63,32 @@ public class OutputGetter implements Outputtable{
      * This is not implemented in this iteration
      *
      * @param player this gives the player information
-     * @param movementNumber this gives the number of moves the player has made
      * */
-    public void outputPoints(Player player, int movementNumber){}
+    public void outputPoints(Player player){
+        int points;
+        int roomMultiplier = 25;
+        int carryMultiplier = 45;
+        int recovMultiplier = 75;
+        int moves = player.getMoveCount();
+        int rooms = getNumberRooms();
+        int roomsVisited = getRoomsVisited();
+        int totalTreasures = getNumTreasures();
+        int treasuresCarried = getTreasuresCarry();
+        int treasuresRecovered = getTreasuresRecovered();
 
+        points = (roomMultiplier * roomsVisited / (rooms + 1)) +
+                 (recovMultiplier * treasuresRecovered / totalTreasures) +
+                 (carryMultiplier * treasuresCarried / totalTreasures);
 
+        if (moves > 5 * rooms) {
+            points = points - moves / (5 * rooms);
+
+            if (points < 0) {
+                points = 0;
+            }
+        }
+        
+        System.out.println("Points: " + points);
+        System.out.println("\n");
+    }
 }
