@@ -67,5 +67,8 @@ public class OutputGetter implements Outputtable{
      * */
     public void outputPoints(Player player, int movementNumber){}
 
+    public void outputOut(){}
+
+    public void outputQuit(){}
 
 }
