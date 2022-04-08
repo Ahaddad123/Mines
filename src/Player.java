@@ -189,18 +189,34 @@ public class Player {
         this.moveCount++;
     }
 
+    /**
+     * Gets the total number of rooms in the map
+     * @return total number of rooms
+     */
     public int getNumberRooms() {
         return MAX_HEIGHT * MAX_WIDTH * MAX_WIDTH;
     }
 
+    /**
+     * Gets the number of rooms visited by the player
+     * @return number of rooms visited
+     */
     public int getRoomsVisited() {
         return roomsVisited.size();
     }
 
+    /**
+     * Gets the total number of treasures.
+     * @return total number of treasures
+     */
     public int getNumTreasures() {
         return NUMBER_OF_TREASURES;
     }
 
+    /**
+     * Gets the number of treasures carried by the player
+     * @return number of treasures being carried
+     */
     public int getTreasuresCarry() {
         return getTreasures().size();
     }

@@ -16,9 +16,9 @@ public enum Commands {
     INVENTORY,
     CARRY,
     QUIT,
-    OUT, //not being used yet
+    OUT,
     LEAVE_TREASURES,
-    POINTS, //not being used yet
+    POINTS,
     INVALID;
 
 

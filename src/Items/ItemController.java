@@ -110,6 +110,9 @@ public class ItemController {
         return monsters;
     }
 
+    /**
+     * Adds all the various room descriptions that are in the game into an array list.
+     */
     public ArrayList<String> createRoomDescriptions() {
         ArrayList<String> descriptions = new ArrayList<>();
         //computer parts

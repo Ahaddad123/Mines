@@ -1,12 +1,14 @@
 import java.util.ArrayList;
 import java.util.List;
 
-// A Java program for Dijkstra's
-// single source shortest path
-// algorithm. The program is for
-// adjacency matrix representation
-// of the graph.
-// source: https://www.geeksforgeeks.org/printing-paths-dijkstras-shortest-path-algorithm/
+/**
+ * A Java program for Dijkstra's
+ * single source shortest path
+ * algorithm. The program is for
+ * adjacency matrix representation
+ * of the graph.
+ * source: https://www.geeksforgeeks.org/printing-paths-dijkstras-shortest-path-algorithm/
+ */
 class ShortestPath {
 
     private static final int NO_PARENT = -1;
@@ -115,7 +117,6 @@ class ShortestPath {
                                       int[] parents, int destination)
     {
         int nVertices = distances.length;
-        //System.out.print("Vertex\t Distance\tPath");
 
         for (int vertexIndex = 0;
              vertexIndex < nVertices;
@@ -124,9 +125,6 @@ class ShortestPath {
             if (vertexIndex != startVertex)
             {
                 if(vertexIndex == destination) {
-                    //System.out.print("\n" + startVertex + " -> ");
-                    //System.out.print(vertexIndex + " \t\t ");
-                    //System.out.print(distances[vertexIndex] + "\t\t");
                     printPath(vertexIndex, parents);
                 }
             }
@@ -147,22 +145,27 @@ class ShortestPath {
             return;
         }
         printPath(parents[currentVertex], parents);
-        //System.out.print(currentVertex + " ");
         path.add(currentVertex);
     }
 
     /**
+     * Converts 3D indices to a 1D index
      * source: https://stackoverflow.com/questions/7367770/how-to-flatten-or-index-3d-array-in-1d-array
-     * @param x
-     * @param y
-     * @param z
-     * @return
+     * @param x row index
+     * @param y column index
+     * @param z floor index
+     * @return 1D index
      */
     public int to1D( int x, int y, int z ) {
         return (z * MAX_WIDTH * MAX_WIDTH) + (y * MAX_WIDTH) + x;
     }
 
-    //source : https://coderwall.com/p/fzni3g/bidirectional-translation-between-1d-and-3d-arrays
+    /**
+     * Converts a 1D index to 3D indices
+     * source : https://coderwall.com/p/fzni3g/bidirectional-translation-between-1d-and-3d-arrays
+     * @param i 1D index
+     * @return array of 3D indices
+     */
     public int[] to3D(int i) {
         int x = i % MAX_WIDTH;
         int y = ( i / MAX_WIDTH ) % MAX_WIDTH;
@@ -194,7 +197,12 @@ class ShortestPath {
         }
     }
 
-    // Driver method
+    /**
+     * Returns a list of rooms that need to be traveled through to get to the entrance.
+     * @param map map of rooms
+     * @param currentRoom player's current location
+     * @return list of rooms
+     */
     public List<Room> findWayOut(Map map, Room currentRoom)
     {
         wayOut = new ArrayList<>();

@@ -9,7 +9,7 @@ import static java.lang.Math.abs;
  * MapRandomizer holds the logic to randomize a map
  */
 public class MapRandomizer {
-    private Room[][][] map;
+    private final Room[][][] map;
     private final Random rand;
     private final int MAX_WIDTH = 5;
 
@@ -336,6 +336,9 @@ public class MapRandomizer {
         return list;
     }
 
+    /**
+     * Blocks passages in the map that have monsters
+     */
     private void addMonsters() {
         for(Room[][] floor : map) {
             for(Room[] row : floor) {

@@ -50,7 +50,7 @@ public class OutputGetter implements Outputtable{
      * */
     public void outputRoomDescription(Room room)
     {
-        System.out.println(room.getDescription());
+        System.out.println("You are in " + room.getDescription());
         for(Item item: room.getItems()){
             System.out.println("A " + item.getName() + " is in this room. ");
         }

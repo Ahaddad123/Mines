@@ -139,6 +139,11 @@ public class GameController {
         }
     }
 
+    /**
+     * Constructs a string of the commands needed to get to the direction
+     * @param wayOut list of rooms that need to be traveled through
+     * @return string of commands
+     */
     private String outputPath(List<Room> wayOut) {
         String way = "";
         for(int i = wayOut.size()-1; i > 0; i--) {
@@ -150,14 +155,20 @@ public class GameController {
         return way;
     }
 
+    /**
+     * Gets the command the player needs to enter to move between two rooms
+     * @param start start room
+     * @param finish end room
+     * @return command
+     */
     private String getDirection(Room start, Room finish) {
-        if(start.getRow() < finish.getRow()) {
+        if(start.getRow() > finish.getRow()) {
             return "W";
-        } else if(start.getRow() > finish.getRow()) {
+        } else if(start.getRow() < finish.getRow()) {
             return "E";
-        } else if(start.getColumn() < finish.getColumn()) {
-            return "N";
         } else if(start.getColumn() > finish.getColumn()) {
+            return "N";
+        } else if(start.getColumn() < finish.getColumn()) {
             return "S";
         } else if(start.getFloor() < finish.getFloor()) {
             return "D";
@@ -188,7 +199,4 @@ public class GameController {
             }
         }
     }
-
-
-
 }

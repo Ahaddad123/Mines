@@ -1,6 +1,3 @@
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * @author Makenna Halvensleben
  * Main class that runs the main method.
