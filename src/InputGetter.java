@@ -208,15 +208,26 @@ public class InputGetter implements Inputtable {
 
         if(valid)
             return Commands.valueOf(command);
-        else
+        else {
+            System.out.println("Invalid input");
             return Commands.INVALID;
+        }
     }
 
     public int inputRandomSeed(){
-        System.out.print("Enter a number for the random seed: ");
-
-        int randomSeed = read.nextInt();
-        String junk = read.nextLine();
+        int randomSeed = 0;
+        boolean valid;
+        do {
+            valid = true;
+            System.out.print("Enter a number for the random seed: ");
+            String seed = read.nextLine();
+            try{
+                randomSeed = Integer.parseInt(seed);
+            } catch (Exception e) {
+                System.out.println("Invalid number. Try again.");
+                valid = false;
+            }
+        } while (!valid);
 
         return randomSeed;
     }
