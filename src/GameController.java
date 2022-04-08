@@ -9,7 +9,6 @@ import Items.Weapon;
  */
 public class GameController {
 
-    private static final int NUM_TREASURES = 24;
     private final ItemController itemController = new ItemController();
     private Player player;
     private Map map;

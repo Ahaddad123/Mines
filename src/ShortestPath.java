@@ -1,86 +1,154 @@
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * source: https://www.geeksforgeeks.org/dijkstras-shortest-path-algorithm-greedy-algo-7/
- */
-public class ShortestPath {
+// A Java program for Dijkstra's
+// single source shortest path
+// algorithm. The program is for
+// adjacency matrix representation
+// of the graph.
+// source: https://www.geeksforgeeks.org/printing-paths-dijkstras-shortest-path-algorithm/
+class ShortestPath {
 
+    private static final int NO_PARENT = -1;
     private final int MAX_WIDTH = 5;
     private final int MAX_HEIGHT = 3;
-    private List<String> wayOut;
+    private List<Room> wayOut;
+    private List<Integer> path;
 
-    // A utility function to find the vertex with minimum distance value,
-    // from the set of vertices not yet included in shortest path tree
-    static final int V = 5*5*3;
-    int minDistance(int[] dist, Boolean[] sptSet, int dest)
-    {
-        // Initialize min value
-        int min = Integer.MAX_VALUE, min_index = -1;
-
-        for (int v = 0; v < V; v++)
-            if (!sptSet[v] && dist[v] <= min) {
-                min = dist[v];
-                min_index = v;
-            }
-
-        return min_index;
-    }
-
-    // A utility function to print the constructed distance array
-    void printSolution(int[] dist, int dest)
-    {
-        System.out.println("Vertex \t\t Distance from Source");
-        for (int i = 0; i < V; i++)
-            if(dist[i] == dest) {
-                System.out.println(i + " \t\t " + dist[i]);
-            }
-    }
-
-    // Function that implements Dijkstra's single source shortest path
-    // algorithm for a graph represented using adjacency matrix
+    // Function that implements Dijkstra's
+    // single source shortest path
+    // algorithm for a graph represented
+    // using adjacency matrix
     // representation
-    void dijkstra(int[][] graph, int src, int dest)
+    private void dijkstra(int[][] adjacencyMatrix,
+                                 int startVertex, int destination)
     {
-        int[] dist = new int[V]; // The output array. dist[i] will hold
-        // the shortest distance from src to i
+        int nVertices = adjacencyMatrix[0].length;
 
-        // sptSet[i] will true if vertex i is included in shortest
-        // path tree or shortest distance from src to i is finalized
-        Boolean[] sptSet = new Boolean[V];
+        // shortestDistances[i] will hold the
+        // shortest distance from src to i
+        int[] shortestDistances = new int[nVertices];
 
-        // Initialize all distances as INFINITE and stpSet[] as false
-        for (int i = 0; i < V; i++) {
-            dist[i] = Integer.MAX_VALUE;
-            sptSet[i] = false;
+        // added[i] will true if vertex i is
+        // included / in shortest path tree
+        // or shortest distance from src to
+        // i is finalized
+        boolean[] added = new boolean[nVertices];
+
+        // Initialize all distances as
+        // INFINITE and added[] as false
+        for (int vertexIndex = 0; vertexIndex < nVertices;
+             vertexIndex++)
+        {
+            shortestDistances[vertexIndex] = Integer.MAX_VALUE;
+            added[vertexIndex] = false;
         }
 
-        // Distance of source vertex from itself is always 0
-        dist[src] = 0;
+        // Distance of source vertex from
+        // itself is always 0
+        shortestDistances[startVertex] = 0;
 
-        // Find shortest path for all vertices
-        for (int count = 0; count < V - 1; count++) {
-            // Pick the minimum distance vertex from the set of vertices
-            // not yet processed. u is always equal to src in first
-            // iteration.
-            int u = minDistance(dist, sptSet, dest);
+        // Parent array to store shortest
+        // path tree
+        int[] parents = new int[nVertices];
 
-            // Mark the picked vertex as processed
-            sptSet[u] = true;
+        // The starting vertex does not
+        // have a parent
+        parents[startVertex] = NO_PARENT;
 
-            // Update dist value of the adjacent vertices of the
+        // Find shortest path for all
+        // vertices
+        for (int i = 1; i < nVertices; i++)
+        {
+
+            // Pick the minimum distance vertex
+            // from the set of vertices not yet
+            // processed. nearestVertex is
+            // always equal to startNode in
+            // first iteration.
+            int nearestVertex = -1;
+            int shortestDistance = Integer.MAX_VALUE;
+            for (int vertexIndex = 0;
+                 vertexIndex < nVertices;
+                 vertexIndex++)
+            {
+                if (!added[vertexIndex] &&
+                        shortestDistances[vertexIndex] <
+                                shortestDistance)
+                {
+                    nearestVertex = vertexIndex;
+                    shortestDistance = shortestDistances[vertexIndex];
+                }
+            }
+
+            // Mark the picked vertex as
+            // processed
+            added[nearestVertex] = true;
+
+            // Update dist value of the
+            // adjacent vertices of the
             // picked vertex.
-            for (int v = 0; v < V; v++)
+            for (int vertexIndex = 0;
+                 vertexIndex < nVertices;
+                 vertexIndex++)
+            {
+                int edgeDistance = adjacencyMatrix[nearestVertex][vertexIndex];
 
-                // Update dist[v] only if is not in sptSet, there is an
-                // edge from u to v, and total weight of path from src to
-                // v through u is smaller than current value of dist[v]
-                if (!sptSet[v] && graph[u][v] != 0 && dist[u] != Integer.MAX_VALUE && dist[u] + graph[u][v] < dist[v])
-                    dist[v] = dist[u] + graph[u][v];
+                if (edgeDistance > 0
+                        && ((shortestDistance + edgeDistance) <
+                        shortestDistances[vertexIndex]))
+                {
+                    parents[vertexIndex] = nearestVertex;
+                    shortestDistances[vertexIndex] = shortestDistance +
+                            edgeDistance;
+                }
+            }
         }
+        printSolution(startVertex, shortestDistances, parents, destination);
+    }
 
-        // print the constructed distance array
-        printSolution(dist, dest);
+    // A utility function to print
+    // the constructed distances
+    // array and shortest paths
+    private void printSolution(int startVertex,
+                                      int[] distances,
+                                      int[] parents, int destination)
+    {
+        int nVertices = distances.length;
+        //System.out.print("Vertex\t Distance\tPath");
+
+        for (int vertexIndex = 0;
+             vertexIndex < nVertices;
+             vertexIndex++)
+        {
+            if (vertexIndex != startVertex)
+            {
+                if(vertexIndex == destination) {
+                    //System.out.print("\n" + startVertex + " -> ");
+                    //System.out.print(vertexIndex + " \t\t ");
+                    //System.out.print(distances[vertexIndex] + "\t\t");
+                    printPath(vertexIndex, parents);
+                }
+            }
+        }
+    }
+
+    // Function to print shortest path
+    // from source to currentVertex
+    // using parents array
+    private void printPath(int currentVertex,
+                                  int[] parents)
+    {
+
+        // Base case : Source node has
+        // been processed
+        if (currentVertex == NO_PARENT)
+        {
+            return;
+        }
+        printPath(parents[currentVertex], parents);
+        //System.out.print(currentVertex + " ");
+        path.add(currentVertex);
     }
 
     /**
@@ -92,6 +160,14 @@ public class ShortestPath {
      */
     public int to1D( int x, int y, int z ) {
         return (z * MAX_WIDTH * MAX_WIDTH) + (y * MAX_WIDTH) + x;
+    }
+
+    //source : https://coderwall.com/p/fzni3g/bidirectional-translation-between-1d-and-3d-arrays
+    public int[] to3D(int i) {
+        int x = i % MAX_WIDTH;
+        int y = ( i / MAX_WIDTH ) % MAX_WIDTH;
+        int z = i / ( MAX_WIDTH * MAX_WIDTH );
+        return new int[]{x, y, z};
     }
 
     /**
@@ -119,19 +195,10 @@ public class ShortestPath {
     }
 
     // Driver method
-    public List<String> findWayOut(Map map, Room currentRoom)
+    public List<Room> findWayOut(Map map, Room currentRoom)
     {
         wayOut = new ArrayList<>();
-        // Let us create the example graph discussed above
-        int[][] graph2 = new int[][] { { 0, 4, 0, 0, 0, 0, 0, 8, 0 },
-                { 4, 0, 8, 0, 0, 0, 0, 11, 0 },
-                { 0, 8, 0, 7, 0, 4, 0, 0, 2 },
-                { 0, 0, 7, 0, 9, 14, 0, 0, 0 },
-                { 0, 0, 0, 9, 0, 10, 0, 0, 0 },
-                { 0, 0, 4, 14, 10, 0, 2, 0, 0 },
-                { 0, 0, 0, 0, 0, 2, 0, 1, 6 },
-                { 8, 11, 0, 0, 0, 0, 1, 0, 7 },
-                { 0, 0, 2, 0, 0, 0, 6, 7, 0 } };
+        path = new ArrayList<>();
 
         int numberOfRooms = MAX_HEIGHT * MAX_WIDTH * MAX_WIDTH;
         int[][] graph = new int[numberOfRooms][numberOfRooms];
@@ -154,8 +221,13 @@ public class ShortestPath {
 
         dijkstra(graph, 0, to1D(currentRoom.getRow(), currentRoom.getColumn(), currentRoom.getFloor()));
 
+        for(int i : path) {
+            int[] index = to3D(i);
+            wayOut.add(map.getMap()[index[0]][index[1]][index[2]]);
+        }
+
         return wayOut;
     }
 }
-// This code is contributed by Aakash Hasija
 
+// This code is contributed by Harikrishnan Rajan
