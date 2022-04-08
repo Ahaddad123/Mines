@@ -19,7 +19,6 @@ public class InputGetter implements Inputtable {
         String command;
         System.out.println("Command? ");
         boolean valid = false;
-
         command = read.nextLine();
         switch(command){
             case "n":
@@ -210,12 +209,10 @@ public class InputGetter implements Inputtable {
     }
 
     public int inputRandomSeed(){
-        Scanner scan = new Scanner(System.in);
         System.out.print("Enter a number for the random seed: ");
 
-        int randomSeed = scan.nextInt();
-
-        scan.close();
+        int randomSeed = read.nextInt();
+        String junk = read.nextLine();
 
         return randomSeed;
     }

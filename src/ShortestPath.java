@@ -80,6 +80,17 @@ public class ShortestPath {
         printSolution(dist);
     }
 
+    /**
+     * source: https://stackoverflow.com/questions/7367770/how-to-flatten-or-index-3d-array-in-1d-array
+     * @param x
+     * @param y
+     * @param z
+     * @return
+     */
+    public int to1D( int x, int y, int z ) {
+        return (z * MAX_WIDTH * MAX_WIDTH) + (y * MAX_WIDTH) + x;
+    }
+
     // Driver method
     public List<String> findWayOut(Map map)
     {
@@ -101,12 +112,13 @@ public class ShortestPath {
             for(int i = 0; i < MAX_WIDTH; i++) {
                 for(int j = 0; j < MAX_WIDTH; j++) {
                     Room room = map.getMap()[i][j][k];
+                    System.out.println(to1D(i,j,k));
                 }
             }
         }
 
-        ShortestPath t = new ShortestPath();
-        t.dijkstra(graph, 0);
+        //ShortestPath t = new ShortestPath();
+        //t.dijkstra(graph, 0);
 
         return new ArrayList<>();
     }
