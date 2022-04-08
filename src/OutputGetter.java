@@ -9,6 +9,8 @@ import java.util.List;
  * Output Getter implements the outputtable interface to output all the results and such of the battle pets game
  * */
 public class OutputGetter implements Outputtable{
+    private static final int NUMBER_OF_ROOMS = 75;
+
     /**
      * outputHelp outputs the help screen and all the commands necessary to play the game.
      * Commands currently not working: O, L, and P
@@ -78,13 +80,7 @@ public class OutputGetter implements Outputtable{
         int roomsVisited = player.getRoomsVisited();
         int totalTreasures = player.getNumTreasures();
         int treasuresCarried = player.getTreasuresCarry();
-        List<Item> treasures = new ArrayList<>();
-        for (Item item : entrance.getItems()) {
-            if (item instanceof Treasure) {
-                treasures.add(item);
-            }
-        }
-        int treasuresRecovered = treasures.size();
+        int treasuresRecovered = getTreasuresReturned(entrance);
 
         points = (roomMultiplier * roomsVisited / (rooms + 1)) +
                  (recovMultiplier * treasuresRecovered / totalTreasures) +
@@ -97,8 +93,10 @@ public class OutputGetter implements Outputtable{
                 points = 0;
             }
         }
-
-        System.out.println("Points: " + points + "\n");
+        System.out.println("You have moved " + moves + " times to visit " + roomsVisited + " of " + NUMBER_OF_ROOMS + " locations.");
+        System.out.println("You hold " + treasuresCarried + " of " + totalTreasures + " treasures.");
+        System.out.println("You have returned " + treasuresRecovered + " of " + totalTreasures + " treasures to the entrance of the mine");
+        System.out.println("You have scored " + points + " points.");
     }
 
     /**
@@ -112,7 +110,18 @@ public class OutputGetter implements Outputtable{
 
     public void outputOut(){}
 
-    public void outputQuitMessage(Player player, int moveCount){
+    public void outputQuitMessage(Player player, Room entrance){
+        outputPoints(player, entrance);
+        System.out.println("Thanks for playing the game!");
+    }
 
+    private int getTreasuresReturned(Room entrance) {
+        List<Item> treasures = new ArrayList<>();
+        for (Item item : entrance.getItems()) {
+            if (item instanceof Treasure) {
+                treasures.add(item);
+            }
+        }
+        return treasures.size();
     }
 }

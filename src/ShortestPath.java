@@ -8,11 +8,12 @@ public class ShortestPath {
 
     private final int MAX_WIDTH = 5;
     private final int MAX_HEIGHT = 3;
+    private List<String> wayOut;
 
     // A utility function to find the vertex with minimum distance value,
     // from the set of vertices not yet included in shortest path tree
-    static final int V = 9;
-    int minDistance(int[] dist, Boolean[] sptSet)
+    static final int V = 5*5*3;
+    int minDistance(int[] dist, Boolean[] sptSet, int dest)
     {
         // Initialize min value
         int min = Integer.MAX_VALUE, min_index = -1;
@@ -27,17 +28,19 @@ public class ShortestPath {
     }
 
     // A utility function to print the constructed distance array
-    void printSolution(int[] dist)
+    void printSolution(int[] dist, int dest)
     {
         System.out.println("Vertex \t\t Distance from Source");
         for (int i = 0; i < V; i++)
-            System.out.println(i + " \t\t " + dist[i]);
+            if(dist[i] == dest) {
+                System.out.println(i + " \t\t " + dist[i]);
+            }
     }
 
     // Function that implements Dijkstra's single source shortest path
     // algorithm for a graph represented using adjacency matrix
     // representation
-    void dijkstra(int[][] graph, int src)
+    void dijkstra(int[][] graph, int src, int dest)
     {
         int[] dist = new int[V]; // The output array. dist[i] will hold
         // the shortest distance from src to i
@@ -60,7 +63,7 @@ public class ShortestPath {
             // Pick the minimum distance vertex from the set of vertices
             // not yet processed. u is always equal to src in first
             // iteration.
-            int u = minDistance(dist, sptSet);
+            int u = minDistance(dist, sptSet, dest);
 
             // Mark the picked vertex as processed
             sptSet[u] = true;
@@ -77,7 +80,7 @@ public class ShortestPath {
         }
 
         // print the constructed distance array
-        printSolution(dist);
+        printSolution(dist, dest);
     }
 
     /**
@@ -91,10 +94,35 @@ public class ShortestPath {
         return (z * MAX_WIDTH * MAX_WIDTH) + (y * MAX_WIDTH) + x;
     }
 
+    /**
+     * Gets the room adjacent to the current room in the given direction if valid
+     * @param room current room
+     * @param command direction
+     * @return adjacent room
+     */
+    public Room getAdjacentRoom(Map map, Room room, Commands command) {
+        if (command == Commands.NORTH && room.getColumn() != 0) {
+            return map.getMap()[room.getRow()][room.getColumn() - 1][room.getFloor()];
+        } else if (command == Commands.SOUTH && room.getColumn() != 4) {
+            return map.getMap()[room.getRow()][room.getColumn() + 1][room.getFloor()];
+        } else if (command == Commands.EAST && room.getRow() != 4) {
+            return map.getMap()[room.getRow() + 1][room.getColumn()][room.getFloor()];
+        } else if (command == Commands.WEST && room.getRow() != 0) {
+            return map.getMap()[room.getRow() - 1][room.getColumn()][room.getFloor()];
+        } else if (command == Commands.UP && room.getFloor() != 2) {
+            return map.getMap()[room.getRow()][room.getColumn()][room.getFloor() + 1];
+        } else if (command == Commands.DOWN && room.getFloor() != 0){
+            return map.getMap()[room.getRow()][room.getColumn()][room.getFloor() - 1];
+        } else {
+            return null;
+        }
+    }
+
     // Driver method
-    public List<String> findWayOut(Map map)
+    public List<String> findWayOut(Map map, Room currentRoom)
     {
-        /* Let us create the example graph discussed above */
+        wayOut = new ArrayList<>();
+        // Let us create the example graph discussed above
         int[][] graph2 = new int[][] { { 0, 4, 0, 0, 0, 0, 0, 8, 0 },
                 { 4, 0, 8, 0, 0, 0, 0, 11, 0 },
                 { 0, 8, 0, 7, 0, 4, 0, 0, 2 },
@@ -112,15 +140,22 @@ public class ShortestPath {
             for(int i = 0; i < MAX_WIDTH; i++) {
                 for(int j = 0; j < MAX_WIDTH; j++) {
                     Room room = map.getMap()[i][j][k];
-                    System.out.println(to1D(i,j,k));
+                    int index = to1D(i,j,k);
+                    for(Commands commands : room.getDirections().keySet()) {
+                        Room adjacentRoom = getAdjacentRoom(map, room, commands);
+                        if(adjacentRoom != null) {
+                            int adjacentIndex = to1D(adjacentRoom.getRow(), adjacentRoom.getColumn(), adjacentRoom.getFloor());
+                            graph[index][adjacentIndex] = room.getDirections().get(commands);
+                        }
+                    }
                 }
             }
         }
 
-        //ShortestPath t = new ShortestPath();
-        //t.dijkstra(graph, 0);
+        dijkstra(graph, 0, to1D(currentRoom.getRow(), currentRoom.getColumn(), currentRoom.getFloor()));
 
-        return new ArrayList<>();
+        return wayOut;
     }
 }
 // This code is contributed by Aakash Hasija
+

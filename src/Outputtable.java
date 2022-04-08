@@ -11,7 +11,7 @@ public interface Outputtable {
 
     public void outputPoints(Player player, Room entrance);
 
-     public void outputQuitMessage(Player player, int moveCount);
+     public void outputQuitMessage(Player player, Room entrance);
 
      public void outputOut();
 }

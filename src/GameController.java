@@ -48,7 +48,7 @@ public class GameController {
             Commands command = inputtable.inputCommand(player);
             handleCommand(command);
         } while(!quit);
-        //outputtable.outputQuitMessage(player, player.getMoveCount());
+        outputtable.outputQuitMessage(player, entrance);
     }
 
     /**
@@ -129,7 +129,7 @@ public class GameController {
                     i++;
                 }
             }
-            shortestPath.findWayOut(map);
+            shortestPath.findWayOut(map, player.getLocation());
         } else if (command == Commands.POINTS) {
             outputtable.outputPoints(player, entrance);
         } else if (command == Commands.HELP) {
