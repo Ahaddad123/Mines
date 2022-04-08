@@ -108,7 +108,10 @@ public class OutputGetter implements Outputtable{
 
     }
 
-    public void outputOut(){}
+    public void outputOut(String wayOut){
+        System.out.println("The pirate takes one of your treasures. As he leaves, he shouts the letters: ");
+        System.out.println(wayOut);
+    }
 
     public void outputQuitMessage(Player player, Room entrance){
         outputPoints(player, entrance);

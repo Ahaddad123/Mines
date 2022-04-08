@@ -13,5 +13,5 @@ public interface Outputtable {
 
      public void outputQuitMessage(Player player, Room entrance);
 
-     public void outputOut();
+     public void outputOut(String wayOut);
 }

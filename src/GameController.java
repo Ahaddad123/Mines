@@ -3,6 +3,8 @@ import Items.ItemController;
 import Items.Treasure;
 import Items.Weapon;
 
+import java.util.List;
+
 /**
  * @author Makenna Halvensleben
  * GameController holds the logic to run the game by handling user Commands.
@@ -116,7 +118,6 @@ public class GameController {
         } else if (command == Commands.LEAVE_TREASURES) {
             leaveTreasures();
         } else if (command == Commands.OUT) {
-            //TODO: implement out functionality
             if (player.getTreasures().size() > 0) {
                 boolean stoleTreasure = false;
                 int i = 0;
@@ -128,13 +129,40 @@ public class GameController {
                     i++;
                 }
             }
-            shortestPath.findWayOut(map, player.getLocation());
+            outputtable.outputOut(outputPath(shortestPath.findWayOut(map, player.getLocation())));
         } else if (command == Commands.POINTS) {
             outputtable.outputPoints(player, entrance);
         } else if (command == Commands.HELP) {
             outputtable.outputHelp();
         } else if (command == Commands.QUIT) {
             quit = true;
+        }
+    }
+
+    private String outputPath(List<Room> wayOut) {
+        String way = "";
+        for(int i = wayOut.size()-1; i > 0; i--) {
+            Room start = wayOut.get(i);
+            int j = i - 1;
+            Room finish = wayOut.get(j);
+            way += getDirection(start, finish);
+        }
+        return way;
+    }
+
+    private String getDirection(Room start, Room finish) {
+        if(start.getRow() < finish.getRow()) {
+            return "W";
+        } else if(start.getRow() > finish.getRow()) {
+            return "E";
+        } else if(start.getColumn() < finish.getColumn()) {
+            return "N";
+        } else if(start.getColumn() > finish.getColumn()) {
+            return "S";
+        } else if(start.getFloor() < finish.getFloor()) {
+            return "D";
+        } else {
+            return "U";
         }
     }
 
