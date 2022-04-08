@@ -196,6 +196,10 @@ public class InputGetter implements Inputtable {
                 valid = true;
                 command = "QUIT";
                 break;
+            case "p":
+                valid = true;
+                command = "POINTS";
+                break;
             default:
                 valid = false;
                 command = "INVALID";

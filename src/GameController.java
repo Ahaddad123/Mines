@@ -170,7 +170,7 @@ public class GameController {
             return "N";
         } else if(start.getColumn() < finish.getColumn()) {
             return "S";
-        } else if(start.getFloor() < finish.getFloor()) {
+        } else if(start.getFloor() > finish.getFloor()) {
             return "D";
         } else {
             return "U";
