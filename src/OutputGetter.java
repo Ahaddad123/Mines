@@ -9,7 +9,6 @@ import java.util.List;
  * Output Getter implements the outputtable interface to output all the results and such of the battle pets game
  * */
 public class OutputGetter implements Outputtable{
-    private static final int NUMBER_OF_ROOMS = 75;
 
     /**
      * outputHelp outputs the help screen and all the commands necessary to play the game.
@@ -83,8 +82,8 @@ public class OutputGetter implements Outputtable{
         int treasuresRecovered = getTreasuresReturned(entrance);
 
         points = (roomMultiplier * roomsVisited / (rooms + 1)) +
-                 (recovMultiplier * treasuresRecovered / totalTreasures) +
-                 (carryMultiplier * treasuresCarried / totalTreasures);
+                (recovMultiplier * treasuresRecovered / totalTreasures) +
+                (carryMultiplier * treasuresCarried / totalTreasures);
 
         if (moves > 5 * rooms) {
             points = points - moves / (5 * rooms);
@@ -93,29 +92,26 @@ public class OutputGetter implements Outputtable{
                 points = 0;
             }
         }
-        System.out.println("You have moved " + moves + " times to visit " + roomsVisited + " of " + NUMBER_OF_ROOMS + " locations.");
-        System.out.println("You hold " + treasuresCarried + " of " + totalTreasures + " treasures.");
-        System.out.println("You have returned " + treasuresRecovered + " of " + totalTreasures + " treasures to the entrance of the mine");
-        System.out.println("You have scored " + points + " points.");
+
+        System.out.println("You have moved " + moves + " times. ");
+        System.out.println("You hold " + treasuresCarried + " treasures out of " + totalTreasures + " treasures.");
+        System.out.println("You have recovered " + treasuresRecovered + " treausres.");
+
+        System.out.println("You scored: "   + points + " points. \n");
     }
 
-    /**
-     * Outputs a confirmation that the user is about to quit the game.
-     */
-    public void outputQuit(){
-        System.out.println("Are you sure you want to quit?\n");
-        System.out.println("Y to confirm, N to continue playing.\n");
-
-    }
-
-    public void outputOut(String wayOut){
-        System.out.println("The pirate takes one of your treasures. As he leaves, he shouts the letters: ");
-        System.out.println(wayOut);
+    public void outputOut(String wayOut, boolean stoleTreasure){
+        if(stoleTreasure) {
+            System.out.println("The pirate takes one of your treasures. As he leaves, he shouts the letters: ");
+            System.out.println(wayOut);
+        } else {
+            System.out.println("You have no treasures to pay for a way out.");
+        }
     }
 
     public void outputQuitMessage(Player player, Room entrance){
         outputPoints(player, entrance);
-        System.out.println("Thanks for playing the game!");
+        System.out.println("Thank you for playing!\n");
     }
 
     private int getTreasuresReturned(Room entrance) {

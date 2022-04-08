@@ -118,8 +118,8 @@ public class GameController {
         } else if (command == Commands.LEAVE_TREASURES) {
             leaveTreasures();
         } else if (command == Commands.OUT) {
+            boolean stoleTreasure = false;
             if (player.getTreasures().size() > 0) {
-                boolean stoleTreasure = false;
                 int i = 0;
                 while(!stoleTreasure) {
                     if (player.getInventory().get(i) instanceof Treasure) {
@@ -129,7 +129,7 @@ public class GameController {
                     i++;
                 }
             }
-            outputtable.outputOut(outputPath(shortestPath.findWayOut(map, player.getLocation())));
+            outputtable.outputOut(outputPath(shortestPath.findWayOut(map, player.getLocation())), stoleTreasure);
         } else if (command == Commands.POINTS) {
             outputtable.outputPoints(player, entrance);
         } else if (command == Commands.HELP) {
