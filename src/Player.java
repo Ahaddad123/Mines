@@ -19,7 +19,7 @@ public class Player {
     private int zIndex;
     private int moveCount;
     private final int MAX_WIDTH = 5;
-    private final int MAX_HEIGHT = 5;
+    private final int MAX_HEIGHT = 3;
     private final int NUMBER_OF_TREASURES = 24;
     private List<Room> roomsVisited;
 

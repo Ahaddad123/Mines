@@ -94,6 +94,7 @@ public class OutputGetter implements Outputtable{
         }
 
         System.out.println("You have moved " + moves + " times. ");
+        System.out.println("You have traveled to " + roomsVisited + " of " + rooms + " rooms.");
         System.out.println("You hold " + treasuresCarried + " treasures out of " + totalTreasures + " treasures.");
         System.out.println("You have recovered " + treasuresRecovered + " treausres.");
 
