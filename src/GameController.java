@@ -17,6 +17,7 @@ public class GameController {
     private boolean quit;
     private Room entrance;
     private final ShortestPath shortestPath = new ShortestPath();
+    private final int CLOSED = 100;
 
     /**
      * Constructor for the GameController
@@ -60,7 +61,7 @@ public class GameController {
         Room location = player.getLocation();
         Room adjacentRoom;
         if (command == Commands.NORTH) {
-            if (location.getDirections().get(Commands.NORTH) == 100) {
+            if (location.getDirections().get(Commands.NORTH) == CLOSED) {
                 removeWeapon(Commands.NORTH);
                 location.getMonsters().remove(Commands.NORTH);
                 location.getDirections().put(Commands.NORTH, 1);
@@ -69,7 +70,7 @@ public class GameController {
                 adjacentRoom.getDirections().put(Commands.SOUTH, 1);
             }
         } else if (command == Commands.SOUTH) {
-            if (location.getDirections().get(Commands.SOUTH) == 100) {
+            if (location.getDirections().get(Commands.SOUTH) == CLOSED) {
                 removeWeapon(Commands.SOUTH);
                 location.getMonsters().remove(Commands.SOUTH);
                 location.getDirections().put(Commands.SOUTH, 1);
@@ -78,7 +79,7 @@ public class GameController {
                 adjacentRoom.getDirections().put(Commands.NORTH, 1);
             }
         } else if (command == Commands.EAST) {
-            if (location.getDirections().get(Commands.EAST) == 100) {
+            if (location.getDirections().get(Commands.EAST) == CLOSED) {
                 removeWeapon(Commands.EAST);
                 location.getMonsters().remove(Commands.EAST);
                 location.getDirections().put(Commands.EAST, 1);
@@ -87,7 +88,7 @@ public class GameController {
                 adjacentRoom.getDirections().put(Commands.WEST, 1);
             }
         } else if (command == Commands.WEST) {
-            if (location.getDirections().get(Commands.WEST) == 100) {
+            if (location.getDirections().get(Commands.WEST) == CLOSED) {
                 removeWeapon(Commands.WEST);
                 location.getMonsters().remove(Commands.WEST);
                 location.getDirections().put(Commands.WEST, 1);
@@ -198,5 +199,37 @@ public class GameController {
                 player.getInventory().remove(item);
             }
         }
+    }
+
+    /**
+     * Gets the player
+     * @return the player
+     */
+    public Player getPlayer() {
+        return player;
+    }
+
+    /**
+     * Sets the player
+     * @param player player
+     */
+    public void setPlayer(Player player) {
+        this.player = player;
+    }
+
+    /**
+     * Gets the map
+     * @return map
+     */
+    public Map getMap() {
+        return map;
+    }
+
+    /**
+     * Sets the map
+     * @param map map
+     */
+    public void setMap(Map map) {
+        this.map = map;
     }
 }

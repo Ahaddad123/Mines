@@ -36,6 +36,23 @@ public class Map {
    }
 
    /**
+    * Default constructor
+    */
+   Map() {
+      this.weapons = new ArrayList<>();
+      this.treasures = new ArrayList<>();
+      this.monsters = new ArrayList<>();
+      map = new Room[MAX_WIDTH][MAX_WIDTH][MAX_HEIGHT];
+      for(int i = 0; i < 5; i++) {
+         for(int j = 0; j < 5; j++) {
+            for(int k = 0; k < 3; k++) {
+               map[i][j][k] = new Room(new HashMap<>(), new ArrayList<>(), new HashMap<>(), i, j, k);
+            }
+         }
+      }
+   }
+
+   /**
     * gets game map
     * @return game map
     */

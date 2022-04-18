@@ -181,12 +181,15 @@ public class Player {
         } else if (command == Commands.DOWN) {
             this.zIndex--;
         }
-        //TODO: change to 3D array
         this.location = map.getMap()[this.xIndex][this.yIndex][this.zIndex];
-        if(!roomsVisited.contains(this.location)) {
-            roomsVisited.add(this.location);
-        }
+        addVisitedRoom(this.location);
         this.moveCount++;
+    }
+
+    public void addVisitedRoom(Room room) {
+        if(!roomsVisited.contains(room)) {
+            roomsVisited.add(room);
+        }
     }
 
     /**
