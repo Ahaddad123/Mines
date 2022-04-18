@@ -162,7 +162,7 @@ public class GameController {
      * @param finish end room
      * @return command
      */
-    private String getDirection(Room start, Room finish) {
+    public String getDirection(Room start, Room finish) {
         if(start.getRow() > finish.getRow()) {
             return "W";
         } else if(start.getRow() < finish.getRow()) {
@@ -215,14 +215,6 @@ public class GameController {
      */
     public void setPlayer(Player player) {
         this.player = player;
-    }
-
-    /**
-     * Gets the map
-     * @return map
-     */
-    public Map getMap() {
-        return map;
     }
 
     /**

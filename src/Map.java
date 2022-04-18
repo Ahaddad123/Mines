@@ -46,7 +46,7 @@ public class Map {
       for(int i = 0; i < 5; i++) {
          for(int j = 0; j < 5; j++) {
             for(int k = 0; k < 3; k++) {
-               map[i][j][k] = new Room(new HashMap<>(), new ArrayList<>(), new HashMap<>(), i, j, k);
+               map[i][j][k] = new Room(i, j, k);
             }
          }
       }

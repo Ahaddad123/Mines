@@ -1,4 +1,6 @@
 import Items.Monster;
+import Items.Treasure;
+import Items.Weapon;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -85,5 +87,103 @@ public class GameControllerTest {
         Assertions.assertEquals(OPEN, currentRoom.getDirections().get(Commands.WEST));
         Assertions.assertFalse(adjacentRoom.getMonsters().containsKey(Commands.EAST));
         Assertions.assertEquals(OPEN, adjacentRoom.getDirections().get(Commands.EAST));
+    }
+
+    @Test
+    public void testRemoveWeapon() {
+        Player player = gameController.getPlayer();
+        String monsterName = "testMonsterName";
+        Weapon testWeapon = new Weapon("", new Monster(monsterName));
+        player.getLocation().getMonsters().put(Commands.NORTH, new Monster(monsterName));
+        player.getInventory().add(testWeapon);
+
+        gameController.removeWeapon(Commands.NORTH);
+
+        Assertions.assertFalse(player.getInventory().contains(testWeapon));
+    }
+
+    @Test
+    public void testLeaveTreasures() {
+        Player player = gameController.getPlayer();
+        Treasure treasure1 = new Treasure("name1");
+        Treasure treasure2 = new Treasure("name2");
+        Treasure treasure3 = new Treasure("name3");
+        Weapon weapon = new Weapon("weapon", new Monster(""));
+        player.getInventory().add(treasure1);
+        player.getInventory().add(treasure2);
+        player.getInventory().add(treasure3);
+        player.getInventory().add(weapon);
+
+        gameController.leaveTreasures();
+
+        Assertions.assertTrue(player.getLocation().getItems().contains(treasure1));
+        Assertions.assertTrue(player.getLocation().getItems().contains(treasure2));
+        Assertions.assertTrue(player.getLocation().getItems().contains(treasure3));
+        Assertions.assertFalse(player.getLocation().getItems().contains(weapon));
+
+        Assertions.assertFalse(player.getInventory().contains(treasure1));
+        Assertions.assertFalse(player.getInventory().contains(treasure2));
+        Assertions.assertFalse(player.getInventory().contains(treasure3));
+        Assertions.assertTrue(player.getInventory().contains(weapon));
+    }
+
+    @Test
+    public void testGetDirection_NORTH() {
+        Room start = new Room(1, 1, 1);
+        Room finish = new Room(1, 0, 1);
+
+        String actual = gameController.getDirection(start, finish);
+
+        Assertions.assertEquals("N", actual);
+    }
+
+    @Test
+    public void testGetDirection_SOUTH() {
+        Room start = new Room(1, 1, 1);
+        Room finish = new Room(1, 2, 1);
+
+        String actual = gameController.getDirection(start, finish);
+
+        Assertions.assertEquals("S", actual);
+    }
+
+    @Test
+    public void testGetDirection_EAST() {
+        Room start = new Room(1, 1, 1);
+        Room finish = new Room(2, 1, 1);
+
+        String actual = gameController.getDirection(start, finish);
+
+        Assertions.assertEquals("E", actual);
+    }
+
+    @Test
+    public void testGetDirection_WEST() {
+        Room start = new Room(1, 1, 1);
+        Room finish = new Room(0, 1, 1);
+
+        String actual = gameController.getDirection(start, finish);
+
+        Assertions.assertEquals("W", actual);
+    }
+
+    @Test
+    public void testGetDirection_UP() {
+        Room start = new Room(1, 1, 1);
+        Room finish = new Room(1, 1, 2);
+
+        String actual = gameController.getDirection(start, finish);
+
+        Assertions.assertEquals("U", actual);
+    }
+
+    @Test
+    public void testGetDirection_DOWN() {
+        Room start = new Room(1, 1, 1);
+        Room finish = new Room(1, 1, 0);
+
+        String actual = gameController.getDirection(start, finish);
+
+        Assertions.assertEquals("D", actual);
     }
 }
