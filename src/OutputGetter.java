@@ -115,7 +115,7 @@ public class OutputGetter implements Outputtable{
         System.out.println("Thank you for playing!\n");
     }
 
-    private int getTreasuresReturned(Room entrance) {
+    public int getTreasuresReturned(Room entrance) {
         List<Item> treasures = new ArrayList<>();
         for (Item item : entrance.getItems()) {
             if (item instanceof Treasure) {
