@@ -186,4 +186,99 @@ public class GameControllerTest {
 
         Assertions.assertEquals("D", actual);
     }
+
+    @Test
+    public void testHandleCommand_NORTH(){
+        Player player = gameController.getPlayer();
+        testCommand = NORTH;
+        gameController.handleCommand(testCommand);
+        Assertions.assertEquals(0, player.yIndex);
+    }
+
+    @Test
+    public void testHandleCommand_SOUTH(){
+        Player player = gameController.getPlayer();
+        testCommand = SOUTH;
+        gameController.handleCommand(testCommand);
+        Assertions.assertEquals(2, player.yIndex);
+    }
+
+    @Test
+    public void testHandleCommand_EAST(){
+        Player player = gameController.getPlayer();
+        testCommand = EAST;
+        gameController.handleCommand(testCommand);
+        Assertions.assertEquals(2, player.xIndex);
+    }
+
+    @Test
+    public void testHandleCommand_WEST(){
+        Player player = gameController.getPlayer();
+        testCommand = WEST;
+        gameController.handleCommand(testCommand);
+        Assertions.assertEquals(0, player.xIndex);
+    }
+
+    @Test
+    public void testHandleCommand_UP(){
+        Player player = gameController.getPlayer();
+        testCommand = UP;
+        gameController.handleCommand(testCommand);
+        Assertions.assertEquals(2, player.zIndex);
+    }
+
+    @Test
+    public void testHandleCommand_DOWN(){
+        Player player = gameController.getPlayer();
+        testCommand = DOWN;
+        gameController.handleCommand(testCommand);
+        Assertions.assertEquals(0, player.zIndex);
+    }
+
+    @Test
+    public void testHandleCommand_CARRY(){
+        List<Item> testItems;
+        testItems.add(new Item("testItem"));
+        Room testRoom = new Room(null, testItems, null, 1, 1, 1);
+        Player testPlayer = new Player(testRoom, 1, 1 ,1)
+        Player player = gameController.getPlayer();
+        testCommand = CARRY;
+        gameController.handleCommand(testCommand);
+        Assertions.assertEquals(1, player.getTreasuresCarry());
+        Assertions.assertEquals("testItem", player.inventory[0]);
+    }
+
+    @Test
+    public void testHandleCommand_LEAVE_TREASURERS(){
+        Player player = gameController.getPlayer();
+        player.getInventory().add(treasure1);
+        player.getInventory().add(treasure2);
+        player.getInventory().add(treasure3);
+        testCommand = LEAVE_TREASURERS;
+        gameController.handleCommand(testCommand);
+        Assertions.assertFalse(player.getInventory().contains(treasure1));
+        Assertions.assertFalse(player.getInventory().contains(treasure2));
+        Assertions.assertFalse(player.getInventory().contains(treasure3));
+    }
+
+    @Test
+    public void testHandleCommand_OUT(){
+        Player player = gameController.getPlayer();
+        player.getInventory().add(treasure1);
+        player.getInventory().add(treasure2);
+        player.getInventory().add(treasure3);
+        testCommand = OUT;
+        gameController.handleCommand(testCommand);
+        Assertions.assertFalse(player.getInventory().contains(treasure1));
+        Assertions.assertFalse(player.getInventory().contains(treasure2));
+        Assertions.assertFalse(player.getInventory().contains(treasure3));
+    }
+
+    @Test
+    public void testHandleCommand_QUIT(){
+        Player player = gameController.getPlayer();
+        testCommand = QUIT;
+        gameController.handleCommand(testCommand);
+        Assertions.assertTrue(gameController.quit);
+    }
 }

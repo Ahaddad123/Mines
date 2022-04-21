@@ -51,4 +51,13 @@ public class PlayerTest {
         Assertions.assertEquals(1, player.getYIndex());
         Assertions.assertEquals(0, player.getZIndex());
     }
+
+    @Test
+    public void testAddVisitedRoom(){
+        Room testRoom = new Room(-1, -1, -1);
+        player.addVisitedRoom(testRoom);
+        Assertions.assertEquals(-1, player.roomsVisited[1].getRow());
+        Assertions.assertEquals(-1, player.roomsVisited[1].getColumn());
+        Assertions.assertEquals(-1, player.roomsVisited[1].getFloor());
+    }
 }
