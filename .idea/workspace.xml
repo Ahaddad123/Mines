@@ -4,10 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1add173e-d9a2-493e-9e4d-be7bf655609e" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/test/GameControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/GameControllerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/PlayerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/PlayerTest.java" afterDir="false" />
-    </list>
+    <list default="true" id="1add173e-d9a2-493e-9e4d-be7bf655609e" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
