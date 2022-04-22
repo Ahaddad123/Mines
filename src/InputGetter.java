@@ -15,11 +15,13 @@ public class InputGetter implements Inputtable {
      *
      * @param player this gives information on the user and their location on the map
      * */
-    public Commands inputCommand(Player player){
-        String command;
+    public Commands inputCommand(Player player, String command){
         System.out.println("Command? ");
         boolean valid = false;
-        command = read.nextLine();
+        while(command == null){
+            command = read.nextLine();
+        }
+
         switch(command){
             case "n":
                 if(player.getLocation().getDirections().get(Commands.NORTH) == 100){
