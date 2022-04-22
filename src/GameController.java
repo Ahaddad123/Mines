@@ -18,6 +18,7 @@ public class GameController {
     private Room entrance;
     private final ShortestPath shortestPath = new ShortestPath();
     private final int CLOSED = 100;
+    private final String command1 = null;
 
     /**
      * Constructor for the GameController
@@ -47,7 +48,7 @@ public class GameController {
         // game loop
         do {
             outputtable.outputRoomDescription(player.getLocation());
-            Commands command = inputtable.inputCommand(player);
+            Commands command = inputtable.inputCommand(player, command1);
             handleCommand(command);
         } while(!quit);
         outputtable.outputQuitMessage(player, entrance);
