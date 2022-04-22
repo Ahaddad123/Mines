@@ -1,6 +1,8 @@
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
+
 public class PlayerTest {
     private final Player player = new Player(new Room(1, 1, 1), 1, 1, 1);
 
@@ -56,8 +58,9 @@ public class PlayerTest {
     public void testAddVisitedRoom(){
         Room testRoom = new Room(-1, -1, -1);
         player.addVisitedRoom(testRoom);
-        Assertions.assertEquals(-1, player.roomsVisited[1].getRow());
-        Assertions.assertEquals(-1, player.roomsVisited[1].getColumn());
-        Assertions.assertEquals(-1, player.roomsVisited[1].getFloor());
+        List<Room> visited = player.getRoomsVisited();
+        Assertions.assertEquals(-1, visited.get(1).getRow());
+        Assertions.assertEquals(-1, visited.get(1).getColumn());
+        Assertions.assertEquals(-1, visited.get(1).getFloor());
     }
 }

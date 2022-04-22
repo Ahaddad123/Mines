@@ -2,23 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="73fd86f5-42f7-4387-8579-be0ab9cb94df" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/runConfigurations.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/team02/Commands.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/team02/Commands.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/team02/GameController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/team02/GameController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/team02/InputGetter.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/team02/InputGetter.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/team02/Inputtable.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/team02/Inputtable.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/team02/Items/ItemController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/team02/Items/ItemController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/team02/Map.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/team02/Map.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/team02/OutputGetter.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/team02/OutputGetter.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/team02/Outputtable.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/team02/Outputtable.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/team02/Player.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/team02/Player.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/team02/Room.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/team02/Room.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/team02/RoomController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/team02/RoomController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GameController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GameController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/InputGetter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/InputGetter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Inputtable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Inputtable.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/InputGetterTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/InputGetterTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/team02.iml" beforeDir="false" afterPath="$PROJECT_DIR$/team02.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/GameControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/GameControllerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/PlayerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/PlayerTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,6 +37,9 @@
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5" value="" />
     <property name="create.test.in.the.same.root" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.0" />
   </component>
   <component name="RecentsManager">
     <key name="CreateTestDialog.Recents.Supers">
@@ -57,7 +49,17 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="JUnit.GameControllerTest.testHandleCommand_CARRY">
+    <configuration name="GameControllerTest" type="AndroidJUnit" factoryName="Android JUnit" temporary="true" nameIsGenerated="true">
+      <module name="team02" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="GameControllerTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Main" />
       <module name="team02" />
@@ -65,8 +67,51 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="GameControllerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="team02" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
+      <option name="ALTERNATIVE_JRE_PATH" value="openjdk-16" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="GameControllerTest" />
+      <option name="METHOD_NAME" value="" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="GameControllerTest.testHandleCommand_CARRY" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="team02" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="GameControllerTest" />
+      <option name="METHOD_NAME" value="testHandleCommand_CARRY" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="PlayerTest.testAddVisitedRoom" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="team02" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="PlayerTest" />
+      <option name="METHOD_NAME" value="testAddVisitedRoom" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Android JUnit.GameControllerTest" />
+      <item itemvalue="Application.Main" />
+      <item itemvalue="JUnit.GameControllerTest" />
+      <item itemvalue="JUnit.GameControllerTest.testHandleCommand_CARRY" />
+      <item itemvalue="JUnit.PlayerTest.testAddVisitedRoom" />
+    </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.GameControllerTest.testHandleCommand_CARRY" />
+        <item itemvalue="JUnit.PlayerTest.testAddVisitedRoom" />
+        <item itemvalue="JUnit.GameControllerTest" />
+        <item itemvalue="Android JUnit.GameControllerTest" />
         <item itemvalue="Application.Main" />
       </list>
     </recent_temporary>
