@@ -1,7 +1,5 @@
-
 import Items.Item;
 import Items.Treasure;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,6 +7,8 @@ import java.util.List;
  * Output Getter implements the outputtable interface to output all the results and such of the battle pets game
  * */
 public class OutputGetter implements Outputtable{
+
+    private int points;
 
     /**
      * outputHelp outputs the help screen and all the commands necessary to play the game.
@@ -70,7 +70,6 @@ public class OutputGetter implements Outputtable{
      * @param player this gives the player information
      * */
     public void outputPoints(Player player, Room entrance){
-        int points;
         int roomMultiplier = 25;
         int carryMultiplier = 45;
         int recovMultiplier = 75;
@@ -123,5 +122,9 @@ public class OutputGetter implements Outputtable{
             }
         }
         return treasures.size();
+    }
+
+    public int getPoints() {
+        return points;
     }
 }
