@@ -224,4 +224,20 @@ public class GameController {
     public void setMap(Map map) {
         this.map = map;
     }
+
+    /**
+     * Gets the quit value
+     * @return if the player has quit
+     */
+    public boolean isQuit() {
+        return quit;
+    }
+
+    /**
+     * Sets the quit value
+     * @param quit if the player has quit
+     */
+    public void setQuit(boolean quit) {
+        this.quit = quit;
+    }
 }

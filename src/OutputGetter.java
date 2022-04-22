@@ -76,7 +76,7 @@ public class OutputGetter implements Outputtable{
         int recovMultiplier = 75;
         int moves = player.getMoveCount();
         int rooms = player.getNumberRooms();
-        int roomsVisited = player.getRoomsVisited();
+        int roomsVisited = player.getRoomsVisitedSize();
         int totalTreasures = player.getNumTreasures();
         int treasuresCarried = player.getTreasuresCarry();
         int treasuresRecovered = getTreasuresReturned(entrance);

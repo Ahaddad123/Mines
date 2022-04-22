@@ -204,7 +204,7 @@ public class Player {
      * Gets the number of rooms visited by the player
      * @return number of rooms visited
      */
-    public int getRoomsVisited() {
+    public int getRoomsVisitedSize() {
         return roomsVisited.size();
     }
 
@@ -222,5 +222,21 @@ public class Player {
      */
     public int getTreasuresCarry() {
         return getTreasures().size();
+    }
+
+    /**
+     * Sets the rooms visited by the player
+     * @param roomsVisited rooms visited
+     */
+    public void setRoomsVisited(List<Room> roomsVisited) {
+        this.roomsVisited = roomsVisited;
+    }
+
+    /**
+     * Gets the rooms visited by the player
+     * @return rooms visited
+     */
+    public List<Room> getRoomsVisited() {
+        return roomsVisited;
     }
 }
