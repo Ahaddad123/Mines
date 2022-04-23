@@ -191,7 +191,11 @@ public class GameControllerTest {
         Assertions.assertEquals("D", actual);
     }
 
-
+    /**
+     * Tests if the carry command executes correctly inside of the
+     * handleCommand method by checking the players inventory and then the
+     * rooms inventory
+     */
     @Test
     public void testHandleCommand_CARRY(){
         Player player = gameController.getPlayer();

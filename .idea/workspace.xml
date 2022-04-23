@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="73fd86f5-42f7-4387-8579-be0ab9cb94df" name="Changes" comment="">
+    <list default="true" id="73fd86f5-42f7-4387-8579-be0ab9cb94df" name="Changes" comment="Changes">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test/GameControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/GameControllerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/PlayerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/PlayerTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
