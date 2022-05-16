@@ -1,11 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="73fd86f5-42f7-4387-8579-be0ab9cb94df" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations.xml" beforeDir="false" />
+    <list default="true" id="73fd86f5-42f7-4387-8579-be0ab9cb94df" name="Changes" comment="Changes">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/team02/Commands.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/team02/Commands.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/team02.iml" beforeDir="false" afterPath="$PROJECT_DIR$/team02.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test/GameControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/GameControllerTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test/PlayerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/PlayerTest.java" afterDir="false" />
     </list>
@@ -49,20 +46,13 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.GameControllerTest.testHandleCommand_CARRY">
+  <component name="RunManager" selected="JUnit.PlayerTest">
     <configuration name="GameControllerTest" type="AndroidJUnit" factoryName="Android JUnit" temporary="true" nameIsGenerated="true">
       <module name="team02" />
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="GameControllerTest" />
       <option name="TEST_OBJECT" value="class" />
       <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Main" />
-      <module name="team02" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -89,6 +79,15 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="PlayerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="team02" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="PlayerTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="PlayerTest.testAddVisitedRoom" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="team02" />
       <option name="PACKAGE_NAME" value="" />
@@ -101,18 +100,18 @@
     </configuration>
     <list>
       <item itemvalue="Android JUnit.GameControllerTest" />
-      <item itemvalue="Application.Main" />
       <item itemvalue="JUnit.GameControllerTest" />
       <item itemvalue="JUnit.GameControllerTest.testHandleCommand_CARRY" />
       <item itemvalue="JUnit.PlayerTest.testAddVisitedRoom" />
+      <item itemvalue="JUnit.PlayerTest" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.PlayerTest" />
+        <item itemvalue="JUnit.GameControllerTest" />
         <item itemvalue="JUnit.GameControllerTest.testHandleCommand_CARRY" />
         <item itemvalue="JUnit.PlayerTest.testAddVisitedRoom" />
-        <item itemvalue="JUnit.GameControllerTest" />
         <item itemvalue="Android JUnit.GameControllerTest" />
-        <item itemvalue="Application.Main" />
       </list>
     </recent_temporary>
   </component>

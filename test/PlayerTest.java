@@ -54,6 +54,10 @@ public class PlayerTest {
         Assertions.assertEquals(0, player.getZIndex());
     }
 
+    /**
+     * Tests if a room is added to the visited list once the player enter
+     * that room.
+     */
     @Test
     public void testAddVisitedRoom(){
         Room testRoom = new Room(-1, -1, -1);
