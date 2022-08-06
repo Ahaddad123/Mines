@@ -1,5 +1,9 @@
-# SE3860 Fall2021 Template
+# SE3860 Spring 2022
 
-Taking the original mines game in C, we created a Java version which can be ran and played on a current operating system. 
+Members: Andrew H, Makenna H, Jasmine K, Alex B
 
-Scope of the project was exactly the original game, so it is still a text based adventure.
+Program Title: Mines
+
+Program Description: A reengineered version of the 1979 DOS game, "Mines, with added UI components.
+
+Run Instructions: -In order to run this project, the user will need to navigate to team04\Mines2.0 folder, open up the Mines2.0.sln file in Visual Studio 2022, and click the green arrow to run the application.
